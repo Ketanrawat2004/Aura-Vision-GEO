@@ -1,0 +1,103 @@
+{
+  "site": "https://www.amazon.in/",
+  "audited_at": "2026-09-02T13:52:47Z",
+  "summary": {
+    "total_findings": 6,
+    "critical": 1,
+    "high": 1,
+    "medium": 2,
+    "low": 2
+  },
+  "findings": [
+    {
+      "id": "F-001",
+      "title": "robots.txt blocks known AI/answer-engine crawlers: GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-Web, PerplexityBot, Google-Extended, CCBot, Bytespider",
+      "severity": "critical",
+      "category": "discoverability",
+      "confidence": "high",
+      "evidence": "can_fetch() returned False for ['GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-Web', 'PerplexityBot', 'Google-Extended', 'CCBot', 'Bytespider'] against https://www.amazon.in/ per https://www.amazon.in/robots.txt",
+      "suggested_action": {
+        "summary": "Remove or narrow the Disallow rules for these agents unless the block is intentional (e.g. paywalled/private content).",
+        "priority": "critical",
+        "mechanism": "A blocked crawler can't fetch the page at all \u2014 this isn't a ranking penalty, the content is architecturally invisible to that system regardless of quality."
+      }
+    },
+    {
+      "id": "F-002",
+      "title": "No mobile viewport meta tag",
+      "severity": "high",
+      "category": "engagement",
+      "confidence": "high",
+      "evidence": "No <meta name=\"viewport\"> found on https://www.amazon.in/.",
+      "suggested_action": {
+        "summary": "Add <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "F-003",
+      "title": "Page implies Product content but has no Product structured data",
+      "severity": "medium",
+      "category": "discoverability",
+      "confidence": "medium",
+      "evidence": "Content-based signal detected for Product (e.g. price pattern or FAQ-shaped headings) but @type=Product absent from JSON-LD on https://www.amazon.in/. Types actually present: none.",
+      "suggested_action": {
+        "summary": "Add Product JSON-LD matching what the page already says in prose.",
+        "priority": "high",
+        "mechanism": "Structured data is what an assistant quotes from directly; prose alone requires the extractor to correctly parse free text, which is far less reliable."
+      }
+    },
+    {
+      "id": "F-004",
+      "title": "1 internal link(s) lead to dead ends",
+      "severity": "medium",
+      "category": "engagement",
+      "confidence": "high",
+      "evidence": "Broken internal links: [('https://www.amazon.in/gp/site-directory?ref_=nav_em_js_disabled', 404)]",
+      "suggested_action": {
+        "summary": "Fix or remove these internal links.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "F-005",
+      "title": "Page has no <h1>",
+      "severity": "low",
+      "category": "discoverability",
+      "confidence": "high",
+      "evidence": "0 <h1> elements found in raw HTML.",
+      "suggested_action": {
+        "summary": "Add a single, descriptive <h1>.",
+        "priority": "low"
+      }
+    },
+    {
+      "id": "F-006",
+      "title": "Long, unbroken paragraphs",
+      "severity": "low",
+      "category": "engagement",
+      "confidence": "low",
+      "evidence": "https://www.amazon.in/: average 1118 words/paragraph across 1 paragraphs; longest is 1118 words.",
+      "suggested_action": {
+        "summary": "Break long paragraphs up with subheadings, bullets, or shorter grafs.",
+        "priority": "low"
+      }
+    }
+  ],
+  "opportunities": [
+    {
+      "title": "robots.txt doesn't reference a sitemap",
+      "suggested_action": {
+        "summary": "Add 'Sitemap: https://.../sitemap.xml' to robots.txt.",
+        "priority": "low"
+      }
+    },
+    {
+      "title": "Publish an llms.txt at the site root",
+      "suggested_action": {
+        "summary": "Add /llms.txt pointing AI agents at your canonical markdown entry point.",
+        "priority": "low"
+      }
+    }
+  ]
+}

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enterprise AI Discoverability & GEO Audit Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- Top Nav & Telemetry -->
+    <header class="top-nav">
+      <div class="brand-section">
+        <div class="brand-logo-wrap">
+          <svg class="brand-logo-svg" width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="logo-grad-primary" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#4f46e5" />
+                <stop offset="100%" stop-color="#0284c7" />
+              </linearGradient>
+              <linearGradient id="logo-core" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#38bdf8" />
+                <stop offset="100%" stop-color="#818cf8" />
+              </linearGradient>
+            </defs>
+            <rect width="38" height="38" rx="10" fill="url(#logo-grad-primary)" />
+            <!-- Concentric Radar / Discovery Aperture -->
+            <circle cx="19" cy="19" r="12" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" stroke-dasharray="3 3" />
+            <circle cx="19" cy="19" r="7.5" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" />
+            <!-- Central Refraction Core -->
+            <path d="M19 9L22.5 15.5L29 19L22.5 22.5L19 29L15.5 22.5L9 19L15.5 15.5Z" fill="#ffffff" />
+            <circle cx="19" cy="19" r="2.5" fill="url(#logo-grad-primary)" />
+          </svg>
+        </div>
+        <div class="brand-meta">
+          <div class="brand-title">
+            <span>AuraVision GEO</span>
+            <span class="brand-tag">agentskills.io v1.0</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="system-telemetry">
+        <div class="telemetry-item">
+          <span class="pulse-dot"></span>
+          <span>Engine Active</span>
+        </div>
+        <div class="telemetry-item">
+          <span>Sandbox: Read-Only</span>
+        </div>
+        <button id="view-sample-btn" class="btn-tool">
+          <svg class="btn-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>
+          Load Benchmarks
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero / Audit Dispatch Bar -->
+    <section class="hero-wrap">
+      <div class="hero-eyebrow">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+        Generative Engine Optimization (GEO) & On-Site Diagnostics
+      </div>
+      <h1 class="hero-headline">Audit Any Web Property for AI Discoverability</h1>
+      <p class="hero-desc">
+        Diagnose why a brand is blocked, skipped, or hallucinated by ChatGPT, Claude, and Perplexity — and fix the friction points that cause visitors to leave.
+      </p>
+
+      <!-- Main Audit Input -->
+      <form id="audit-form" class="audit-form-container">
+        <div class="input-prefix-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </div>
+        <input 
+          type="url" 
+          id="url-input" 
+          class="audit-input" 
+          placeholder="Enter website URL (e.g., https://stripe.com or https://linear.app)" 
+          required 
+          autocomplete="off"
+        />
+        <button type="submit" id="run-btn" class="btn-audit">
+          <span id="btn-text">Execute Audit</span>
+        </button>
+      </form>
+
+      <!-- Quick Benchmark Presets -->
+      <div class="presets-strip">
+        <span class="preset-caption">Field Benchmarks:</span>
+        <button class="chip-btn" data-url="https://www.amazon.in/">Amazon India (Blocked + 404)</button>
+        <button class="chip-btn" data-url="https://stripe.com">Stripe (88 h1s + FAQ Schema)</button>
+        <button class="chip-btn" data-url="https://www.nytimes.com">NYTimes (Sitewide AI Block)</button>
+        <button class="chip-btn" data-url="https://linear.app">Linear (SPA + /llms.txt)</button>
+        <button class="chip-btn" data-url="https://basecamp.com">Basecamp (No-Nav Subpage)</button>
+        <button class="chip-btn" data-url="https://developer.mozilla.org">MDN Web Docs (Microdata)</button>
+      </div>
+    </section>
+
+    <!-- PROMINENT PROCESSING / LOADING STATE OVERLAY -->
+    <div id="progress-card" class="progress-banner">
+      <div class="processing-header-group">
+        <div class="processing-radar-spinner"></div>
+        <div class="processing-text-wrapper">
+          <div class="processing-main-title">Orchestrating Diagnostic Skills against <span id="progress-target" style="color: var(--accent-indigo);">...</span></div>
+          <div id="processing-sub-msg" class="processing-sub-status">Initiating single-pass HTTP fetch and dispatching worker skills...</div>
+        </div>
+      </div>
+
+      <!-- 5-Stage Live Progress Pipeline with Clean SVG Icons -->
+      <div class="stages-grid">
+        <div class="stage-pill" id="step-crawl">
+          <div class="stage-pill-header">
+            <span class="stage-name">
+              <svg class="stage-icon-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v6m0 6v6m-9-9h6m6 0h6"/></svg>
+              1. Crawlability
+            </span>
+            <span id="icon-crawl" class="stage-status-indicator"></span>
+          </div>
+          <div class="stage-desc">12 AI-bot user-agents</div>
+        </div>
+
+        <div class="stage-pill" id="step-render">
+          <div class="stage-pill-header">
+            <span class="stage-name">
+              <svg class="stage-icon-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+              2. DOM Hydration
+            </span>
+            <span id="icon-render" class="stage-status-indicator"></span>
+          </div>
+          <div class="stage-desc">Raw vs rendered diff</div>
+        </div>
+
+        <div class="stage-pill" id="step-struct">
+          <div class="stage-pill-header">
+            <span class="stage-name">
+              <svg class="stage-icon-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+              3. Schema Graph
+            </span>
+            <span id="icon-struct" class="stage-status-indicator"></span>
+          </div>
+          <div class="stage-desc">JSON-LD & Microdata</div>
+        </div>
+
+        <div class="stage-pill" id="step-trust">
+          <div class="stage-pill-header">
+            <span class="stage-name">
+              <svg class="stage-icon-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+              4. Entity Trust
+            </span>
+            <span id="icon-trust" class="stage-status-indicator"></span>
+          </div>
+          <div class="stage-desc">Disambiguation & Dates</div>
+        </div>
+
+        <div class="stage-pill" id="step-engage">
+          <div class="stage-pill-header">
+            <span class="stage-name">
+              <svg class="stage-icon-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+              5. UX Retention
+            </span>
+            <span id="icon-engage" class="stage-status-indicator"></span>
+          </div>
+          <div class="stage-desc">Dead links & Navigation</div>
+        </div>
+      </div>
+
+      <!-- Live Execution Log Ticker -->
+      <div class="live-log-ticker">
+        <span class="ticker-label">Live Activity</span>
+        <span id="live-ticker-text">Connecting to host, parsing robots.txt and sitemap entries...</span>
+      </div>
+    </div>
+
+    <!-- Main Results Dashboard -->
+    <main id="results-section" class="dashboard-root">
+      
+      <!-- Executive Verdict Banner -->
+      <section class="verdict-banner">
+        <div class="verdict-text-block">
+          <div id="verdict-badge" class="verdict-badge" style="background: var(--accent-emerald-light); color: var(--accent-emerald);">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+            Executive Summary
+          </div>
+          <h2 id="verdict-headline" class="verdict-headline">Evaluating website health...</h2>
+          <p id="verdict-summary" class="verdict-summary">Comprehensive diagnostic overview across AI search engine indexability and user friction.</p>
+        </div>
+        <div class="verdict-grade-box">
+          <div id="verdict-grade" class="verdict-grade-letter" style="color: var(--accent-emerald);">A</div>
+          <div class="verdict-grade-label">GEO Health Grade</div>
+        </div>
+      </section>
+
+      <!-- Top Navigation Tabs & Export -->
+      <div class="dashboard-nav-tabs">
+        <div class="tab-list">
+          <button class="nav-tab-btn active" data-tab="overview">
+            <svg class="nav-tab-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+            <span>Overview & Scorecard</span>
+          </button>
+          <button class="nav-tab-btn" data-tab="findings">
+            <svg class="nav-tab-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span>Issues & Fixes</span>
+            <span id="tab-findings-count" class="tab-badge">0</span>
+          </button>
+          <button class="nav-tab-btn" data-tab="simulator">
+            <svg class="nav-tab-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
+            <span>AI Query Simulator</span>
+          </button>
+          <button class="nav-tab-btn" data-tab="toolkit">
+            <svg class="nav-tab-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            <span>1-Click Fix Toolkit</span>
+          </button>
+        </div>
+
+        <div class="export-actions">
+          <button id="btn-export-json" class="btn-tool">
+            <svg class="btn-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Export JSON
+          </button>
+          <button id="btn-export-md" class="btn-tool">
+            <svg class="btn-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            Export Markdown
+          </button>
+          <button id="btn-copy-report" class="btn-tool">
+            <svg class="btn-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy Summary
+          </button>
+        </div>
+      </div>
+
+      <!-- TAB 1: OVERVIEW & SCORECARD -->
+      <div id="tab-content-overview" class="tab-panel">
+        
+        <!-- Score Matrix (Hero Gauge + Severity Counters) -->
+        <div class="overview-matrix">
+          
+          <!-- Gauge Card -->
+          <div class="score-card">
+            <div class="score-visual-ring">
+              <svg class="score-svg-meter" viewBox="0 0 160 160">
+                <circle class="score-circle-bg" cx="80" cy="80" r="70"></circle>
+                <circle id="score-circle" class="score-circle-bar" cx="80" cy="80" r="70"></circle>
+              </svg>
+              <div class="score-center-content">
+                <div id="score-num" class="score-value">--</div>
+                <div class="score-unit">GEO Score</div>
+              </div>
+            </div>
+            <div id="score-verdict" class="score-status-title">Evaluating...</div>
+            <div id="audited-site-label" class="audited-domain-chip">https://example.com</div>
+          </div>
+
+          <!-- Breakdown Pillars & Counters -->
+          <div class="pillars-container">
+            <!-- Severity Summary Row -->
+            <div class="severity-counters-row">
+              <div class="counter-card critical">
+                <div class="counter-label">Critical</div>
+                <div id="count-critical" class="counter-number">0</div>
+                <div class="counter-sub">Blocks crawler sitewide</div>
+              </div>
+              <div class="counter-card high">
+                <div class="counter-label">High</div>
+                <div id="count-high" class="counter-number">0</div>
+                <div class="counter-sub">Degrades major sections</div>
+              </div>
+              <div class="counter-card medium">
+                <div class="counter-label">Medium</div>
+                <div id="count-medium" class="counter-number">0</div>
+                <div class="counter-sub">Missing schema / dead links</div>
+              </div>
+              <div class="counter-card low">
+                <div class="counter-label">Low</div>
+                <div id="count-low" class="counter-number">0</div>
+                <div class="counter-sub">Cosmetic & heading quirks</div>
+              </div>
+            </div>
+
+            <!-- 5 Diagnostic Pillars Bar Chart -->
+            <div class="pillars-card">
+              <div class="pillar-item">
+                <div class="pillar-meta">
+                  <span class="pillar-name">
+                    <svg class="pillar-icon-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
+                    AI Crawler Admittance
+                  </span>
+                  <span id="p-crawl-val" class="pillar-score">100%</span>
+                </div>
+                <div class="pillar-bar-bg"><div id="p-crawl-bar" class="pillar-bar-fill" style="width: 100%; background: var(--accent-emerald);"></div></div>
+              </div>
+
+              <div class="pillar-item">
+                <div class="pillar-meta">
+                  <span class="pillar-name">
+                    <svg class="pillar-icon-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 12 12 17 22 12"/></svg>
+                    DOM Hydration & Extraction
+                  </span>
+                  <span id="p-render-val" class="pillar-score">100%</span>
+                </div>
+                <div class="pillar-bar-bg"><div id="p-render-bar" class="pillar-bar-fill" style="width: 100%; background: var(--accent-cyan);"></div></div>
+              </div>
+
+              <div class="pillar-item">
+                <div class="pillar-meta">
+                  <span class="pillar-name">
+                    <svg class="pillar-icon-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/></svg>
+                    Structured Fact Graph (Schema.org)
+                  </span>
+                  <span id="p-struct-val" class="pillar-score">60%</span>
+                </div>
+                <div class="pillar-bar-bg"><div id="p-struct-bar" class="pillar-bar-fill" style="width: 60%; background: var(--accent-amber);"></div></div>
+              </div>
+
+              <div class="pillar-item">
+                <div class="pillar-meta">
+                  <span class="pillar-name">
+                    <svg class="pillar-icon-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    Cross-Web Trust & Disambiguation
+                  </span>
+                  <span id="p-trust-val" class="pillar-score">100%</span>
+                </div>
+                <div class="pillar-bar-bg"><div id="p-trust-bar" class="pillar-bar-fill" style="width: 100%; background: var(--accent-indigo);"></div></div>
+              </div>
+
+              <div class="pillar-item">
+                <div class="pillar-meta">
+                  <span class="pillar-name">
+                    <svg class="pillar-icon-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="2"/></svg>
+                    On-Site Visitor Retention
+                  </span>
+                  <span id="p-engage-val" class="pillar-score">85%</span>
+                </div>
+                <div class="pillar-bar-bg"><div id="p-engage-bar" class="pillar-bar-fill" style="width: 85%; background: var(--accent-cyan);"></div></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- At-a-Glance Comparison Matrix -->
+        <section class="comparison-grid">
+          <div class="comp-box working">
+            <div class="comp-title" style="color: var(--accent-emerald);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              What Is Working Well
+            </div>
+            <ul id="comp-working-list" class="comp-item-list">
+              <li class="comp-item"><span class="comp-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span> <span>AI bots are permitted in robots.txt</span></li>
+            </ul>
+          </div>
+
+          <div class="comp-box issues">
+            <div class="comp-title" style="color: var(--severity-critical);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+              Priority Issues Requiring Action
+            </div>
+            <ul id="comp-issues-list" class="comp-item-list">
+              <li class="comp-item"><span class="comp-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> <span>No Product/Offer structured schema for pricing</span></li>
+            </ul>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- TAB 2: DETAILED FINDINGS -->
+      <div id="tab-content-findings" class="tab-panel" style="display: none;">
+        <!-- Filter Toolbar -->
+        <div class="findings-filter-bar">
+          <div class="filter-buttons">
+            <button class="f-filter-btn active" data-filter="all">All (<span id="filter-all-count">0</span>)</button>
+            <button class="f-filter-btn" data-filter="critical">Critical (<span id="filter-crit-count">0</span>)</button>
+            <button class="f-filter-btn" data-filter="high">High (<span id="filter-high-count">0</span>)</button>
+            <button class="f-filter-btn" data-filter="medium">Medium (<span id="filter-med-count">0</span>)</button>
+            <button class="f-filter-btn" data-filter="low">Low (<span id="filter-low-count">0</span>)</button>
+          </div>
+        </div>
+
+        <!-- Findings Feed -->
+        <div id="findings-feed" class="findings-list">
+          <!-- Dynamic Finding Cards Inserted Here -->
+        </div>
+
+        <!-- Beyond Defect Opportunities -->
+        <section id="opportunities-container" class="panel-section" style="display: none;">
+          <h2 class="panel-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v8"/><path d="M4.93 10.93l1.41 1.41"/><path d="M2 18h2"/><path d="M20 18h2"/><path d="M19.07 10.93l-1.41 1.41"/><path d="M22 22H2"/><path d="M16 6l4 4"/><path d="M16 10l4-4"/></svg>
+            Beyond-Defect Opportunities
+          </h2>
+          <div id="opportunities-feed" style="margin-top: 1rem;"></div>
+        </section>
+      </div>
+
+      <!-- TAB 3: INTERACTIVE AI QUERY SIMULATOR -->
+      <div id="tab-content-simulator" class="tab-panel" style="display: none;">
+        <!-- AI Bot Cards -->
+        <div class="sim-grid-layout" style="margin-bottom: 2rem;">
+          <div class="sim-engine-card">
+            <div class="sim-card-top">
+              <span class="sim-bot-name">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                ChatGPT (OpenAI)
+              </span>
+              <span id="sim-badge-chatgpt" class="sim-status-badge allowed">Allowed</span>
+            </div>
+            <p id="sim-text-chatgpt" class="sim-body-text">
+              GPTBot permitted. Model can ground on structured text.
+            </p>
+          </div>
+
+          <div class="sim-engine-card">
+            <div class="sim-card-top">
+              <span class="sim-bot-name">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+                Claude (Anthropic)
+              </span>
+              <span id="sim-badge-claude" class="sim-status-badge allowed">Allowed</span>
+            </div>
+            <p id="sim-text-claude" class="sim-body-text">
+              ClaudeBot permitted. Content is accessible for Claude browsing.
+            </p>
+          </div>
+
+          <div class="sim-engine-card">
+            <div class="sim-card-top">
+              <span class="sim-bot-name">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                Perplexity AI
+              </span>
+              <span id="sim-badge-perplexity" class="sim-status-badge allowed">Allowed</span>
+            </div>
+            <p id="sim-text-perplexity" class="sim-body-text">
+              PerplexityBot permitted. Live citation search enabled.
+            </p>
+          </div>
+
+          <div class="sim-engine-card">
+            <div class="sim-card-top">
+              <span class="sim-bot-name">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4.5 2 7-6.5-4.5-6.5 4.5 2-7L2 9h7z"/></svg>
+                Gemini / Google AI
+              </span>
+              <span id="sim-badge-gemini" class="sim-status-badge allowed">Allowed</span>
+            </div>
+            <p id="sim-text-gemini" class="sim-body-text">
+              Google-Extended permitted. Content eligible for Gemini RAG.
+            </p>
+          </div>
+        </div>
+
+        <!-- Interactive Question Tester -->
+        <div class="sim-interactive-box">
+          <h3 style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 0.5rem;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            Test a User Prompt Against This Website
+          </h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">
+            Simulate how ChatGPT or Perplexity will answer when a real user asks a specific question about this brand.
+          </p>
+
+          <div class="sim-ask-form">
+            <input type="text" id="sim-prompt-input" class="sim-ask-input" value="What are the pricing tiers and plans?" placeholder="Type a test question (e.g., How much does it cost?)" />
+            <button id="btn-run-sim" class="btn-audit" style="padding: 0.65rem 1.25rem; font-size: 0.85rem;">Simulate Answer</button>
+          </div>
+
+          <div id="sim-response-box" class="sim-response-card">
+            <strong>Simulated Assistant Response:</strong>
+            <p id="sim-response-text" style="margin-top: 0.4rem; color: var(--text-body);">
+              Generating response simulation based on detected crawlability and schema data...
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: 1-CLICK FIX TOOLKIT -->
+      <div id="tab-content-toolkit" class="tab-panel" style="display: none;">
+        <!-- llms.txt box -->
+        <section class="toolkit-box">
+          <div class="toolkit-header">
+            <div>
+              <div class="panel-title" style="font-size: 1.15rem;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                1-Click <code>/llms.txt</code> Manifest Builder
+              </div>
+              <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.2rem;">
+                Drop this file at your website root (<code>https://yoursite.com/llms.txt</code>) to give AI models a clean index of facts.
+              </p>
+            </div>
+            <button id="btn-copy-llms" class="btn-tool">
+              <svg class="btn-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy /llms.txt
+            </button>
+          </div>
+          <pre id="llms-preview" class="toolkit-pre"># Loading canonical llms.txt...</pre>
+        </section>
+
+        <!-- Schema.org JSON-LD box -->
+        <section class="toolkit-box">
+          <div class="toolkit-header">
+            <div>
+              <div class="panel-title" style="font-size: 1.15rem;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                Schema.org JSON-LD Product & Organization Fix
+              </div>
+              <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.2rem;">
+                Paste this snippet inside the <code>&lt;head&gt;</code> of your pricing and home pages to enable direct AI pricing quotes.
+              </p>
+            </div>
+            <button id="btn-copy-schema" class="btn-tool">
+              <svg class="btn-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy JSON-LD
+            </button>
+          </div>
+          <pre id="schema-preview" class="toolkit-pre">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "Verified Brand",
+      "url": "https://example.com"
+    }
+  ]
+}</pre>
+        </section>
+
+        <!-- Robots.txt patch box -->
+        <section class="toolkit-box">
+          <div class="toolkit-header">
+            <div>
+              <div class="panel-title" style="font-size: 1.15rem;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/></svg>
+                Recommended <code>robots.txt</code> AI Crawler Rules
+              </div>
+              <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.2rem;">
+                Ensure these rules exist in your <code>robots.txt</code> to admit answer-engine crawlers while protecting private paths.
+              </p>
+            </div>
+            <button id="btn-copy-robots" class="btn-tool">
+              <svg class="btn-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy robots.txt Rules
+            </button>
+          </div>
+          <pre id="robots-preview" class="toolkit-pre">User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://example.com/sitemap.xml</pre>
+        </section>
+      </div>
+
+    </main>
+
+    <!-- Toast Notification with SVG Checkmark -->
+    <div id="toast" class="toast-msg">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+      <span>Copied to clipboard!</span>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>AuraVision GEO & Discoverability Engine · Standard agentskills.io Marketplace Format · Read-only</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "site": "https://linear.app",
+  "audited_at": "2026-09-02T13:40:15Z",
+  "summary": {
+    "total_findings": 1,
+    "critical": 0,
+    "high": 0,
+    "medium": 1,
+    "low": 0
+  },
+  "findings": [
+    {
+      "id": "F-001",
+      "title": "Page implies Product content but has no Product structured data",
+      "severity": "medium",
+      "category": "discoverability",
+      "confidence": "medium",
+      "evidence": "Content-based signal detected for Product (e.g. price pattern or FAQ-shaped headings) but @type=Product absent from JSON-LD on https://linear.app. Types actually present: none.",
+      "suggested_action": {
+        "summary": "Add Product JSON-LD matching what the page already says in prose.",
+        "priority": "high",
+        "mechanism": "Structured data is what an assistant quotes from directly; prose alone requires the extractor to correctly parse free text, which is far less reliable."
+      }
+    }
+  ],
+  "opportunities": []
+}

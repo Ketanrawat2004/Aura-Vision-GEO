@@ -1,0 +1,187 @@
+{
+  "site": "127.0.0.1:8931",
+  "audited_at": "2026-09-02T05:17:44Z",
+  "summary": {
+    "total_findings": 14,
+    "critical": 0,
+    "high": 7,
+    "medium": 6,
+    "low": 1
+  },
+  "findings": [
+    {
+      "id": "F-001",
+      "title": "robots.txt blocks known AI/answer-engine crawlers: GPTBot",
+      "severity": "high",
+      "category": "discoverability",
+      "confidence": "high",
+      "evidence": "can_fetch() returned False for ['GPTBot'] against http://127.0.0.1:8931/ per http://127.0.0.1:8931/robots.txt",
+      "suggested_action": {
+        "summary": "Remove or narrow the Disallow rules for these agents unless the block is intentional (e.g. paywalled/private content).",
+        "priority": "high",
+        "mechanism": "A blocked crawler can't fetch the page at all \u2014 this isn't a ranking penalty, the content is architecturally invisible to that system regardless of quality."
+      }
+    },
+    {
+      "id": "F-002",
+      "title": "Sitemap lastmod dates are stale sitewide",
+      "severity": "high",
+      "category": "discoverability",
+      "confidence": "high",
+      "evidence": "Newest <lastmod> across 2 URLs is 2023-02-01 (1309 days old).",
+      "suggested_action": {
+        "summary": "Regenerate the sitemap so lastmod reflects real content changes.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "F-003",
+      "title": "1 public page(s) are marked noindex",
+      "severity": "high",
+      "category": "discoverability",
+      "confidence": "high",
+      "evidence": "noindex detected on: ['http://127.0.0.1:8931/pricing']",
+      "suggested_action": {
+        "summary": "Remove noindex from pages meant to be publicly discoverable.",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "F-004",
+      "title": "Rendered content is 40.0x larger than raw HTML at http://127.0.0.1:8931/app/",
+      "severity": "high",
+      "category": "discoverability",
+      "confidence": "high",
+      "evidence": "Raw GET: 1 words. Headless render: 40 words.",
+      "suggested_action": {
+        "summary": "Server-render or prerender this route so key content ships in the initial HTML response.",
+        "priority": "high",
+        "mechanism": "Fetchers that don't execute JavaScript \u2014 most AI-answer-engine crawlers included \u2014 only ever see the raw response. If the facts only exist after render, they don't exist for those systems."
+      }
+    },
+    {
+      "id": "F-005",
+      "title": "No <nav> element found",
+      "severity": "high",
+      "category": "engagement",
+      "confidence": "medium",
+      "evidence": "No <nav> tag in http://127.0.0.1:8931/.; No <nav> tag in http://127.0.0.1:8931/product/.",
+      "suggested_action": {
+        "summary": "Wrap primary navigation in a <nav> element with descriptive link text.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "F-006",
+      "title": "No mobile viewport meta tag",
+      "severity": "high",
+      "category": "engagement",
+      "confidence": "high",
+      "evidence": "No <meta name=\"viewport\"> found on http://127.0.0.1:8931/.; No <meta name=\"viewport\"> found on http://127.0.0.1:8931/product/.",
+      "suggested_action": {
+        "summary": "Add <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "F-007",
+      "title": "No contact/about link found",
+      "severity": "high",
+      "category": "engagement",
+      "confidence": "medium",
+      "evidence": "No link containing 'contact' or 'about' found on http://127.0.0.1:8931/.; No link containing 'contact' or 'about' found on http://127.0.0.1:8931/product/.",
+      "suggested_action": {
+        "summary": "Add a visible link to a contact or about page from primary navigation.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "F-008",
+      "title": "Page implies FAQPage content but has no FAQPage structured data",
+      "severity": "medium",
+      "category": "discoverability",
+      "confidence": "medium",
+      "evidence": "Content-based signal detected for FAQPage (e.g. price pattern or FAQ-shaped headings) but @type=FAQPage absent from JSON-LD on http://127.0.0.1:8931/product/. Types actually present: ['Organization'].; Content-based signal detected for Product (e.g. price pattern or FAQ-shaped headings) but @type=Product absent from JSON-LD on http://127.0.0.1:8931/product/. Types actually present: ['Organization'].",
+      "suggested_action": {
+        "summary": "Add FAQPage JSON-LD matching what the page already says in prose.",
+        "priority": "high",
+        "mechanism": "Structured data is what an assistant quotes from directly; prose alone requires the extractor to correctly parse free text, which is far less reliable."
+      }
+    },
+    {
+      "id": "F-009",
+      "title": "Organization structured data is present but missing required properties",
+      "severity": "medium",
+      "category": "discoverability",
+      "confidence": "high",
+      "evidence": "Organization node missing name/url: {\"@context\": \"https://schema.org\", \"@type\": \"Organization\", \"name\": \"Acme\"}",
+      "suggested_action": {
+        "summary": "Fill in the missing required Organization properties.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "F-010",
+      "title": "1 image(s) likely carrying facts have no alt text",
+      "severity": "medium",
+      "category": "discoverability",
+      "confidence": "low",
+      "evidence": "Images with no alt text and filenames suggesting factual content: ['/images/price-chart.png']",
+      "suggested_action": {
+        "summary": "Add descriptive alt text (or a plain-text equivalent nearby) restating the key facts the image carries.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "F-011",
+      "title": "Key facts appear to live only inside a linked PDF",
+      "severity": "medium",
+      "category": "discoverability",
+      "confidence": "medium",
+      "evidence": "PDF links whose href/anchor text suggest primary facts live there, with no on-page text equivalent found: ['/docs/pricing-sheet.pdf']",
+      "suggested_action": {
+        "summary": "Mirror the PDF's key facts as plain HTML text on the page itself; keep the PDF as a download option, not the only copy.",
+        "priority": "high",
+        "mechanism": "Most fetchers extract page text directly; a fact that requires opening and parsing a separate PDF is far less likely to be read and used at all."
+      }
+    },
+    {
+      "id": "F-012",
+      "title": "Evergreen-sounding claims on a page whose newest date signal is 1326 days old",
+      "severity": "medium",
+      "category": "discoverability",
+      "confidence": "medium",
+      "evidence": "http://127.0.0.1:8931/about/: phrasing matched an evergreen-claim pattern (e.g. 'currently', 'we are') with no 'as of' qualifier nearby; newest date signal found on the page is 2023-01-15 (1326 days old).",
+      "suggested_action": {
+        "summary": "Either refresh the content and its date, or add an explicit 'as of <date>' qualifier so the claim doesn't read as current when it may not be.",
+        "priority": "medium",
+        "mechanism": "Assistants weight recency when deciding what to trust and repeat; an undated evergreen claim next to old date signals reads as unreliable once cross-checked."
+      }
+    },
+    {
+      "id": "F-013",
+      "title": "1 internal link(s) lead to dead ends",
+      "severity": "medium",
+      "category": "engagement",
+      "confidence": "high",
+      "evidence": "Broken internal links: [('http://127.0.0.1:8931/docs/pricing-sheet.pdf', 404)]",
+      "suggested_action": {
+        "summary": "Fix or remove these internal links.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "F-014",
+      "title": "Page has 2 <h1> elements",
+      "severity": "low",
+      "category": "discoverability",
+      "confidence": "high",
+      "evidence": "2 <h1> elements found in raw HTML.",
+      "suggested_action": {
+        "summary": "Reduce to a single <h1>; demote the rest to <h2>+.",
+        "priority": "low"
+      }
+    }
+  ],
+  "opportunities": []
+}
