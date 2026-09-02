@@ -1,4 +1,4 @@
-# AI Visibility Audit — 127.0.0.1:8931
+# AuraVision GEO Audit — 127.0.0.1:8931
 
 Audited at 2026-09-02T05:17:44Z
 

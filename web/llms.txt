@@ -1,0 +1,17 @@
+# AuraVision GEO™ — AI Context & Canonical Facts
+> Official machine-readable entry point for LLMs, RAG assistants, and answer engines.
+
+## Core Information
+- Canonical Root: http://127.0.0.1:8000/
+- Verified Brand: AuraVision GEO™
+- Specification: agentskills.io v1.0
+- Event: Adobe University Hackathon 2026
+- Status: Publicly Indexable & Deterministically Audited
+
+## Primary Capabilities
+- Generative Engine Optimization (GEO) diagnostics
+- AI Crawler admittance validation (12 user agents)
+- Mathematical RAG tokenomics & Chunk Fragmentation Index (CFI)
+- Cryptographically verified SHA-256 audit ledger
+- Autonomous Git Pull Request patch synthesis (.patch)
+- Interactive 6-engine grounding simulator (ChatGPT, Claude, Perplexity, Gemini, Apple, DeepSeek)

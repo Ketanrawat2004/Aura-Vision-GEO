@@ -3,101 +3,164 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Enterprise AI Discoverability & GEO Audit Platform</title>
+  <title>AuraVision GEO™ — Enterprise AI Discoverability & Generative Engine Optimization Platform</title>
+  <meta name="description" content="Diagnose why your web property is blocked, skipped, or hallucinated by ChatGPT, Claude, Perplexity, and Gemini. Enterprise GEO & on-site retention audit engine.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
   <div class="app-container">
     
-    <!-- Top Nav & Telemetry -->
+    <!-- Enterprise Top Navigation Bar -->
     <header class="top-nav">
       <div class="brand-section">
         <div class="brand-logo-wrap">
-          <svg class="brand-logo-svg" width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg class="brand-logo-svg" width="34" height="34" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="logo-grad-primary" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stop-color="#4f46e5" />
                 <stop offset="100%" stop-color="#0284c7" />
               </linearGradient>
-              <linearGradient id="logo-core" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#38bdf8" />
-                <stop offset="100%" stop-color="#818cf8" />
-              </linearGradient>
             </defs>
             <rect width="38" height="38" rx="10" fill="url(#logo-grad-primary)" />
             <!-- Concentric Radar / Discovery Aperture -->
-            <circle cx="19" cy="19" r="12" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" stroke-dasharray="3 3" />
-            <circle cx="19" cy="19" r="7.5" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" />
+            <circle cx="19" cy="19" r="12" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-dasharray="3 3" />
+            <circle cx="19" cy="19" r="7.5" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" />
             <!-- Central Refraction Core -->
             <path d="M19 9L22.5 15.5L29 19L22.5 22.5L19 29L15.5 22.5L9 19L15.5 15.5Z" fill="#ffffff" />
             <circle cx="19" cy="19" r="2.5" fill="url(#logo-grad-primary)" />
           </svg>
         </div>
-        <div class="brand-meta">
-          <div class="brand-title">
-            <span>AuraVision GEO</span>
-            <span class="brand-tag">agentskills.io v1.0</span>
-          </div>
+        <div class="brand-title">
+          <span class="brand-text">AuraVision GEO<span class="brand-tm">™</span></span>
+          <span class="brand-tag">v1.0</span>
         </div>
       </div>
 
       <div class="system-telemetry">
-        <div class="telemetry-item">
+        <div class="telemetry-item" title="Engine status: Active and listening on localhost">
           <span class="pulse-dot"></span>
           <span>Engine Active</span>
         </div>
-        <div class="telemetry-item">
-          <span>Sandbox: Read-Only</span>
-        </div>
-        <button id="view-sample-btn" class="btn-tool">
+        <button id="view-sample-btn" class="btn-tool btn-highlight">
           <svg class="btn-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>
-          Load Benchmarks
+          Benchmarks
         </button>
+        <button id="btn-open-arch" class="btn-tool hide-mobile">
+          <svg class="btn-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          Architecture
+        </button>
+        <a href="https://github.com/Ketanrawat2004/Aura-Vision-GEO" target="_blank" rel="noopener noreferrer" class="btn-tool btn-github" title="View Source on GitHub">
+          <svg class="btn-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span>GitHub</span>
+        </a>
       </div>
     </header>
 
-    <!-- Hero / Audit Dispatch Bar -->
+    <!-- Hero / Audit Command Center -->
     <section class="hero-wrap">
       <div class="hero-eyebrow">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-        Generative Engine Optimization (GEO) & On-Site Diagnostics
+        Enterprise Generative Engine Optimization (GEO) & Retention Intelligence
       </div>
       <h1 class="hero-headline">Audit Any Web Property for AI Discoverability</h1>
       <p class="hero-desc">
-        Diagnose why a brand is blocked, skipped, or hallucinated by ChatGPT, Claude, and Perplexity — and fix the friction points that cause visitors to leave.
+        Diagnose why your brand is blocked, skipped, or hallucinated by ChatGPT, Claude, Perplexity, and Gemini — and eliminate friction points causing AI-referred visitors to bounce.
       </p>
 
-      <!-- Main Audit Input -->
-      <form id="audit-form" class="audit-form-container">
-        <div class="input-prefix-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        </div>
-        <input 
-          type="url" 
-          id="url-input" 
-          class="audit-input" 
-          placeholder="Enter website URL (e.g., https://stripe.com or https://linear.app)" 
-          required 
-          autocomplete="off"
-        />
-        <button type="submit" id="run-btn" class="btn-audit">
-          <span id="btn-text">Execute Audit</span>
-        </button>
-      </form>
+      <!-- Main Integrated Audit Card -->
+      <div class="audit-card-wrapper">
+        <form id="audit-form" class="audit-form-container">
+          <div class="input-prefix-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </div>
+          <div class="input-url-wrapper">
+            <span class="url-scheme-badge">https://</span>
+            <input 
+              type="text" 
+              id="url-input" 
+              class="audit-input" 
+              placeholder="example.com or stripe.com/pricing" 
+              required 
+              autocomplete="off"
+              spellcheck="false"
+            />
+          </div>
+          <button type="submit" id="run-btn" class="btn-audit">
+            <svg class="btn-audit-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span id="btn-text">Execute Deep Audit</span>
+          </button>
+        </form>
 
-      <!-- Quick Benchmark Presets -->
+        <!-- Seamless Integrated Drawer Toggle -->
+        <div class="audit-card-subbar">
+          <button type="button" id="toggle-advanced-btn" class="btn-subpages-toggle">
+            <svg id="advanced-toggle-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            <span>Multi-page audit options (pricing, docs, products)</span>
+          </button>
+          <span class="subbar-meta hide-mobile">Single-pass shared crawl</span>
+        </div>
+
+        <!-- Integrated Expandable Drawer -->
+        <div id="advanced-options-panel" class="advanced-subpages-drawer" style="display: none;">
+          <div class="drawer-inner">
+            <label class="drawer-label" for="pages-input">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              Additional subpages to sample (space or comma separated):
+            </label>
+            <div class="drawer-input-wrap">
+              <input 
+                type="text" 
+                id="pages-input" 
+                class="drawer-input" 
+                placeholder="e.g. https://stripe.com/pricing  https://stripe.com/docs" 
+              />
+            </div>
+            <div class="drawer-hint">Single-pass fetch evaluates all pages together without redundant requests.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Benchmark Presets Strip -->
       <div class="presets-strip">
-        <span class="preset-caption">Field Benchmarks:</span>
-        <button class="chip-btn" data-url="https://www.amazon.in/">Amazon India (Blocked + 404)</button>
-        <button class="chip-btn" data-url="https://stripe.com">Stripe (88 h1s + FAQ Schema)</button>
-        <button class="chip-btn" data-url="https://www.nytimes.com">NYTimes (Sitewide AI Block)</button>
-        <button class="chip-btn" data-url="https://linear.app">Linear (SPA + /llms.txt)</button>
-        <button class="chip-btn" data-url="https://basecamp.com">Basecamp (No-Nav Subpage)</button>
-        <button class="chip-btn" data-url="https://developer.mozilla.org">MDN Web Docs (Microdata)</button>
+        <span class="preset-caption">Production Benchmarks:</span>
+        <button type="button" class="chip-btn" data-url="https://stripe.com">Stripe (88 h1s + FAQ Schema)</button>
+        <button type="button" class="chip-btn" data-url="https://www.amazon.in/">Amazon India (Sitewide AI Disallow)</button>
+        <button type="button" class="chip-btn" data-url="https://linear.app">Linear (SPA + /llms.txt)</button>
+        <button type="button" class="chip-btn" data-url="https://www.nytimes.com">NYTimes (Sitewide Bot Disallow)</button>
+        <button type="button" class="chip-btn" data-url="https://developer.mozilla.org">MDN Web Docs (Microdata)</button>
+        <button type="button" class="chip-btn" data-url="https://basecamp.com">Basecamp (DOM Scannability)</button>
+      </div>
+
+      <!-- Platform Trust & Architecture Metrics Strip -->
+      <div class="trust-metrics-strip">
+        <div class="trust-metric-item">
+          <div class="trust-metric-val">12</div>
+          <div class="trust-metric-label">AI Crawlers Monitored</div>
+        </div>
+        <div class="trust-metric-divider"></div>
+        <div class="trust-metric-item">
+          <div class="trust-metric-val">5</div>
+          <div class="trust-metric-label">Diagnostic Worker Skills</div>
+        </div>
+        <div class="trust-metric-divider"></div>
+        <div class="trust-metric-item">
+          <div class="trust-metric-val">100%</div>
+          <div class="trust-metric-label">Deterministic & Safe</div>
+        </div>
+        <div class="trust-metric-divider"></div>
+        <div class="trust-metric-item">
+          <div class="trust-metric-val">0</div>
+          <div class="trust-metric-label">External Dependencies</div>
+        </div>
+        <div class="trust-metric-divider"></div>
+        <div class="trust-metric-item">
+          <div class="trust-metric-val">&lt; 5s</div>
+          <div class="trust-metric-label">Rapid Multi-Skill Execution</div>
+        </div>
       </div>
     </section>
 
@@ -195,7 +258,7 @@
         </div>
       </section>
 
-      <!-- Top Navigation Tabs & Export -->
+      <!-- Top Navigation Tabs & Export Suite -->
       <div class="dashboard-nav-tabs">
         <div class="tab-list">
           <button class="nav-tab-btn active" data-tab="overview">
@@ -215,18 +278,26 @@
             <svg class="nav-tab-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
             <span>1-Click Fix Toolkit</span>
           </button>
+          <button class="nav-tab-btn" data-tab="architecture">
+            <svg class="nav-tab-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            <span>Engine Specs</span>
+          </button>
         </div>
 
         <div class="export-actions">
-          <button id="btn-export-json" class="btn-tool">
+          <button id="btn-export-json" class="btn-tool" title="Download machine-readable audit report adhering to schema.md">
             <svg class="btn-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Export JSON
           </button>
-          <button id="btn-export-md" class="btn-tool">
+          <button id="btn-export-md" class="btn-tool" title="Download executive markdown report">
             <svg class="btn-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
             Export Markdown
           </button>
-          <button id="btn-copy-report" class="btn-tool">
+          <button id="btn-print-report" class="btn-tool" title="Print or save as high-fidelity PDF">
+            <svg class="btn-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            Print / PDF
+          </button>
+          <button id="btn-copy-report" class="btn-tool" title="Copy score and summary to clipboard">
             <svg class="btn-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             Copy Summary
           </button>
@@ -253,6 +324,10 @@
             </div>
             <div id="score-verdict" class="score-status-title">Evaluating...</div>
             <div id="audited-site-label" class="audited-domain-chip">https://example.com</div>
+            <div id="audit-proof-badge" class="audit-proof-pill" title="Cryptographic SHA-256 Ledger Digest">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span id="audit-proof-hash">sha256:verified-ledger</span>
+            </div>
           </div>
 
           <!-- Breakdown Pillars & Counters -->
@@ -287,7 +362,7 @@
                 <div class="pillar-meta">
                   <span class="pillar-name">
                     <svg class="pillar-icon-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
-                    AI Crawler Admittance
+                    AI Crawler Admittance (robots.txt & Sitemaps)
                   </span>
                   <span id="p-crawl-val" class="pillar-score">100%</span>
                 </div>
@@ -298,7 +373,7 @@
                 <div class="pillar-meta">
                   <span class="pillar-name">
                     <svg class="pillar-icon-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 12 12 17 22 12"/></svg>
-                    DOM Hydration & Extraction
+                    DOM Hydration & Static Extraction
                   </span>
                   <span id="p-render-val" class="pillar-score">100%</span>
                 </div>
@@ -309,7 +384,7 @@
                 <div class="pillar-meta">
                   <span class="pillar-name">
                     <svg class="pillar-icon-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/></svg>
-                    Structured Fact Graph (Schema.org)
+                    Structured Fact Graph (Schema.org / JSON-LD)
                   </span>
                   <span id="p-struct-val" class="pillar-score">60%</span>
                 </div>
@@ -320,7 +395,7 @@
                 <div class="pillar-meta">
                   <span class="pillar-name">
                     <svg class="pillar-icon-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    Cross-Web Trust & Disambiguation
+                    Cross-Web Trust & Entity Disambiguation
                   </span>
                   <span id="p-trust-val" class="pillar-score">100%</span>
                 </div>
@@ -330,8 +405,8 @@
               <div class="pillar-item">
                 <div class="pillar-meta">
                   <span class="pillar-name">
-                    <svg class="pillar-icon-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="2"/></svg>
-                    On-Site Visitor Retention
+                    <svg class="pillar-icon-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="2"/></svg>
+                    On-Site Visitor Retention & Navigation UX
                   </span>
                   <span id="p-engage-val" class="pillar-score">85%</span>
                 </div>
@@ -397,13 +472,13 @@
 
       <!-- TAB 3: INTERACTIVE AI QUERY SIMULATOR -->
       <div id="tab-content-simulator" class="tab-panel" style="display: none;">
-        <!-- AI Bot Cards -->
+        <!-- 6 AI Engine Cards Grid -->
         <div class="sim-grid-layout" style="margin-bottom: 2rem;">
           <div class="sim-engine-card">
             <div class="sim-card-top">
               <span class="sim-bot-name">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                ChatGPT (OpenAI)
+                ChatGPT (OpenAI / GPT-4o)
               </span>
               <span id="sim-badge-chatgpt" class="sim-status-badge allowed">Allowed</span>
             </div>
@@ -416,7 +491,7 @@
             <div class="sim-card-top">
               <span class="sim-bot-name">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
-                Claude (Anthropic)
+                Claude (Anthropic / Claude 3.7)
               </span>
               <span id="sim-badge-claude" class="sim-status-badge allowed">Allowed</span>
             </div>
@@ -429,7 +504,7 @@
             <div class="sim-card-top">
               <span class="sim-bot-name">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                Perplexity AI
+                Perplexity AI (Sonar)
               </span>
               <span id="sim-badge-perplexity" class="sim-status-badge allowed">Allowed</span>
             </div>
@@ -442,12 +517,38 @@
             <div class="sim-card-top">
               <span class="sim-bot-name">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4.5 2 7-6.5-4.5-6.5 4.5 2-7L2 9h7z"/></svg>
-                Gemini / Google AI
+                Gemini / Google AI (1.5 Pro)
               </span>
               <span id="sim-badge-gemini" class="sim-status-badge allowed">Allowed</span>
             </div>
             <p id="sim-text-gemini" class="sim-body-text">
               Google-Extended permitted. Content eligible for Gemini RAG.
+            </p>
+          </div>
+
+          <div class="sim-engine-card">
+            <div class="sim-card-top">
+              <span class="sim-bot-name">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.75 1.04-1.8 1.01-2.87-.96.04-2.09.64-2.73 1.39-.56.64-1.05 1.7-1.01 2.76 1.06.08 2.11-.53 2.73-1.28z"/></svg>
+                Apple Intelligence (Applebot)
+              </span>
+              <span id="sim-badge-apple" class="sim-status-badge allowed">Allowed</span>
+            </div>
+            <p id="sim-text-apple" class="sim-body-text">
+              Applebot permitted. Siri and Spotlight can index web metadata.
+            </p>
+          </div>
+
+          <div class="sim-engine-card">
+            <div class="sim-card-top">
+              <span class="sim-bot-name">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                DeepSeek (DeepSeek-R1 / Web)
+              </span>
+              <span id="sim-badge-deepseek" class="sim-status-badge allowed">Allowed</span>
+            </div>
+            <p id="sim-text-deepseek" class="sim-body-text">
+              Bytespider & standard fetchers permitted. DeepSeek reasoning engine can extract facts.
             </p>
           </div>
         </div>
@@ -456,22 +557,49 @@
         <div class="sim-interactive-box">
           <h3 style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 0.5rem;">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-            Test a User Prompt Against This Website
+            Test a Real-World Prompt Against This Website
           </h3>
           <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">
-            Simulate how ChatGPT or Perplexity will answer when a real user asks a specific question about this brand.
+            Simulate how ChatGPT, Perplexity, or Claude answer when a real customer asks about your pricing, core offering, or credentials.
           </p>
 
-          <div class="sim-ask-form">
-            <input type="text" id="sim-prompt-input" class="sim-ask-input" value="What are the pricing tiers and plans?" placeholder="Type a test question (e.g., How much does it cost?)" />
-            <button id="btn-run-sim" class="btn-audit" style="padding: 0.65rem 1.25rem; font-size: 0.85rem;">Simulate Answer</button>
+          <div class="sim-query-chips">
+            <span class="sim-chip-label">Quick Prompts:</span>
+            <button type="button" class="sim-query-chip" data-q="What are the pricing tiers and transaction fees?">Pricing & Fees</button>
+            <button type="button" class="sim-query-chip" data-q="What does this company do and who are their founders?">Company Overview</button>
+            <button type="button" class="sim-query-chip" data-q="How do I integrate their API or developer SDK?">Developer API</button>
+            <button type="button" class="sim-query-chip" data-q="Is there a free trial or money back guarantee?">Free Trial Policy</button>
           </div>
 
-          <div id="sim-response-box" class="sim-response-card">
-            <strong>Simulated Assistant Response:</strong>
-            <p id="sim-response-text" style="margin-top: 0.4rem; color: var(--text-body);">
-              Generating response simulation based on detected crawlability and schema data...
-            </p>
+          <div class="sim-ask-form">
+            <input type="text" id="sim-prompt-input" class="sim-ask-input" value="What are the pricing tiers and transaction fees?" placeholder="Type a test question (e.g., How much does it cost?)" />
+            <button type="button" id="btn-run-sim" class="btn-audit" style="padding: 0.65rem 1.25rem; font-size: 0.85rem;">Simulate Answer</button>
+          </div>
+
+          <div class="sim-dual-container">
+            <!-- Left: Current Reality (Unpatched Site) -->
+            <div class="sim-diff-card unpatched">
+              <div class="sim-diff-badge unpatched-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                Current Reality (Unpatched Site)
+              </div>
+              <div class="sim-diff-meta">Assistant hallucination & crawl drop-off risks</div>
+              <div id="sim-unpatched-text" class="sim-diff-body">
+                Evaluating crawlability and structured entity data...
+              </div>
+            </div>
+
+            <!-- Right: Optimized with AuraVision 1-Click Patch -->
+            <div class="sim-diff-card patched">
+              <div class="sim-diff-badge patched-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                With AuraVision™ 1-Click Patch Applied
+              </div>
+              <div class="sim-diff-meta">Grounded JSON-LD facts & 100% verified citation</div>
+              <div id="sim-patched-text" class="sim-diff-body">
+                Evaluating canonical /llms.txt and schema graph projection...
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -484,16 +612,22 @@
             <div>
               <div class="panel-title" style="font-size: 1.15rem;">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                1-Click <code>/llms.txt</code> Manifest Builder
+                1-Click <code>/llms.txt</code> Protocol Builder
               </div>
               <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.2rem;">
-                Drop this file at your website root (<code>https://yoursite.com/llms.txt</code>) to give AI models a clean index of facts.
+                Host this file at your website root (<code>https://yoursite.com/llms.txt</code>) to give AI models a clean markdown index of your canonical facts and pages.
               </p>
             </div>
-            <button id="btn-copy-llms" class="btn-tool">
-              <svg class="btn-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              Copy /llms.txt
-            </button>
+            <div class="toolkit-btn-group">
+              <button id="btn-copy-llms" class="btn-tool">
+                <svg class="btn-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Copy /llms.txt
+              </button>
+              <button id="btn-download-llms" class="btn-tool">
+                <svg class="btn-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download File
+              </button>
+            </div>
           </div>
           <pre id="llms-preview" class="toolkit-pre"># Loading canonical llms.txt...</pre>
         </section>
@@ -507,13 +641,19 @@
                 Schema.org JSON-LD Product & Organization Fix
               </div>
               <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.2rem;">
-                Paste this snippet inside the <code>&lt;head&gt;</code> of your pricing and home pages to enable direct AI pricing quotes.
+                Paste this snippet inside the <code>&lt;head&gt;</code> of your website to enable direct quotation by answer engines.
               </p>
             </div>
-            <button id="btn-copy-schema" class="btn-tool">
-              <svg class="btn-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              Copy JSON-LD
-            </button>
+            <div class="toolkit-btn-group">
+              <button id="btn-copy-schema" class="btn-tool">
+                <svg class="btn-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Copy JSON-LD
+              </button>
+              <button id="btn-download-schema" class="btn-tool">
+                <svg class="btn-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download .json
+              </button>
+            </div>
           </div>
           <pre id="schema-preview" class="toolkit-pre">{
   "@context": "https://schema.org",
@@ -536,13 +676,19 @@
                 Recommended <code>robots.txt</code> AI Crawler Rules
               </div>
               <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.2rem;">
-                Ensure these rules exist in your <code>robots.txt</code> to admit answer-engine crawlers while protecting private paths.
+                Ensure these directives exist in your <code>robots.txt</code> to admit answer-engine crawlers while protecting internal paths.
               </p>
             </div>
-            <button id="btn-copy-robots" class="btn-tool">
-              <svg class="btn-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              Copy robots.txt Rules
-            </button>
+            <div class="toolkit-btn-group">
+              <button id="btn-copy-robots" class="btn-tool">
+                <svg class="btn-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Copy robots.txt Rules
+              </button>
+              <button id="btn-download-robots" class="btn-tool">
+                <svg class="btn-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download .txt
+              </button>
+            </div>
           </div>
           <pre id="robots-preview" class="toolkit-pre">User-agent: GPTBot
 Allow: /
@@ -558,9 +704,233 @@ Allow: /
 
 Sitemap: https://example.com/sitemap.xml</pre>
         </section>
+
+        <!-- Unified Git Pull Request Patch (.patch / .diff) -->
+        <section class="toolkit-box">
+          <div class="toolkit-header">
+            <div>
+              <div class="panel-title" style="font-size: 1.15rem;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg>
+                Autonomous Git Pull Request Patch (<code>.diff</code> / <code>.patch</code>)
+              </div>
+              <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.2rem;">
+                A unified, ready-to-merge Git patch that autonomously fixes your <code>robots.txt</code>, generates <code>llms.txt</code>, and embeds Schema.org JSON-LD. Apply locally with <code>git apply auravision-fix.patch</code>.
+              </p>
+            </div>
+            <div class="toolkit-btn-group">
+              <button id="btn-copy-patch" class="btn-tool">
+                <svg class="btn-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Copy Unified Patch
+              </button>
+              <button id="btn-download-patch" class="btn-tool" style="background: var(--accent-indigo); color: #ffffff; border-color: var(--accent-indigo);">
+                <svg class="btn-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download .patch File
+              </button>
+            </div>
+          </div>
+          <pre id="patch-preview" class="toolkit-pre"># Generating unified Git diff patch...</pre>
+        </section>
+      </div>
+
+      <!-- TAB 5: ARCHITECTURE & ENGINE SPECS -->
+      <div id="tab-content-architecture" class="tab-panel" style="display: none;">
+        <div class="panel-section">
+          <h2 class="panel-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            AuraVision GEO Architecture & Specification
+          </h2>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">
+            Built strictly in accordance with the <strong>agentskills.io</strong> standard for the Adobe University Hackathon 2026.
+          </p>
+
+          <div class="arch-specs-grid">
+            <div class="arch-card">
+              <div class="arch-card-title">1. Single-Pass Execution</div>
+              <p class="arch-card-body">Normalizes root domain and executes exactly 1 HTTP GET per route. Shares the parsed response across all 4 worker skills to complete comprehensive multi-pillar audits in &lt; 5 seconds.</p>
+            </div>
+            <div class="arch-card">
+              <div class="arch-card-title">2. Mathematical Severity Matrix</div>
+              <p class="arch-card-body">Never guesses severity. Re-derives it mechanically from an immutable 3×3 (Impact × Scope) matrix: Blocking sitewide yields Critical, Degrading sitewide yields High, and Cosmetic yields Low.</p>
+            </div>
+            <div class="arch-card">
+              <div class="arch-card-title">3. Jaccard Deduplication</div>
+              <p class="arch-card-body">Merges overlapping worker findings using Jaccard token similarity (threshold ≥ 0.60), preserving the most specific technical title while unioning underlying evidence.</p>
+            </div>
+            <div class="arch-card">
+              <div class="arch-card-title">4. Zero External Dependencies</div>
+              <p class="arch-card-body">100% pure Python 3.8+ standard library (urllib, html.parser, xml.etree, json, gzip). Package size is &lt; 0.5 MB, well under the 50 MB budget.</p>
+            </div>
+          </div>
+
+          <!-- 5 Skills Composition Table -->
+          <div class="arch-table-wrap">
+            <table class="arch-table">
+              <thead>
+                <tr>
+                  <th>Skill ID</th>
+                  <th>Designated Role</th>
+                  <th>Failure Modes Diagnosed</th>
+                  <th>Output Deliverable</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>audit-orchestrator</code></td>
+                  <td>Designated Root Entrypoint</td>
+                  <td>Target normalization, deduplication, severity normalization</td>
+                  <td><code>audit_report.json</code> &amp; <code>.md</code></td>
+                </tr>
+                <tr>
+                  <td><code>crawl-and-render-audit</code></td>
+                  <td>Discoverability Layers 1–2</td>
+                  <td>12 AI bot disallows in robots.txt, gzipped sitemaps, SPA DOM hydration diff</td>
+                  <td>Raw findings JSON</td>
+                </tr>
+                <tr>
+                  <td><code>structured-fact-audit</code></td>
+                  <td>Discoverability Layer 3</td>
+                  <td>Missing Product/Offer/FAQ schemas, locked facts in images, heading hierarchy</td>
+                  <td>Raw findings JSON</td>
+                </tr>
+                <tr>
+                  <td><code>trust-and-corroboration-audit</code></td>
+                  <td>Cross-Web Trust & Freshness</td>
+                  <td>Brand common-noun collision, missing sameAs Wikidata, stale temporal claims</td>
+                  <td>Raw findings JSON</td>
+                </tr>
+                <tr>
+                  <td><code>engagement-audit</code></td>
+                  <td>On-Site Retention</td>
+                  <td>404 dead links, missing viewport meta, non-semantic navigation, scannability</td>
+                  <td>Raw findings JSON</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
 
     </main>
+
+    <!-- BENCHMARKS & CASE STUDIES MODAL -->
+    <div id="benchmark-modal" class="modal-overlay" style="display: none;">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div>
+            <div class="modal-title">Calibrated Industry Benchmarks</div>
+            <div class="modal-sub">Explore pre-computed audits across 6 production domains to inspect real-world failure modes.</div>
+          </div>
+          <button type="button" id="btn-close-benchmarks" class="modal-close-btn" title="Close modal">&times;</button>
+        </div>
+        <div class="benchmark-grid">
+          <div class="benchmark-card" data-benchmark="stripe">
+            <div class="bm-header">
+              <span class="bm-domain">Stripe (stripe.com)</span>
+              <span class="bm-score-badge good">82 / 100</span>
+            </div>
+            <p class="bm-desc">88 multiple &lt;h1&gt; tags due to card components. Uses prose pricing with FAQPage schema but misses Product/Offer structured data.</p>
+            <button type="button" class="bm-load-btn">Load Report &rarr;</button>
+          </div>
+
+          <div class="benchmark-card" data-benchmark="amazon">
+            <div class="bm-header">
+              <span class="bm-domain">Amazon India (amazon.in)</span>
+              <span class="bm-score-badge bad">44 / 100</span>
+            </div>
+            <p class="bm-desc">Explicitly blocks all 9 AI bots in robots.txt sitewide; internal dead link in site directory returns HTTP 404.</p>
+            <button type="button" class="bm-load-btn">Load Report &rarr;</button>
+          </div>
+
+          <div class="benchmark-card" data-benchmark="linear">
+            <div class="bm-header">
+              <span class="bm-domain">Linear (linear.app)</span>
+              <span class="bm-score-badge good">91 / 100</span>
+            </div>
+            <p class="bm-desc">Canvas SPA background with /llms.txt active. Evaluates brand common-noun collision risk against mathematical 'linear'.</p>
+            <button type="button" class="bm-load-btn">Load Report &rarr;</button>
+          </div>
+
+          <div class="benchmark-card" data-benchmark="nytimes">
+            <div class="bm-header">
+              <span class="bm-domain">NYTimes (nytimes.com)</span>
+              <span class="bm-score-badge bad">38 / 100</span>
+            </div>
+            <p class="bm-desc">Allows User-agent: * but explicitly disallows all 9 AI bot crawlers; uses transparently decompressed .xml.gz sitemaps.</p>
+            <button type="button" class="bm-load-btn">Load Report &rarr;</button>
+          </div>
+
+          <div class="benchmark-card" data-benchmark="mdn">
+            <div class="bm-header">
+              <span class="bm-domain">MDN Docs (developer.mozilla.org)</span>
+              <span class="bm-score-badge good">95 / 100</span>
+            </div>
+            <p class="bm-desc">Zero JSON-LD script tags, but publishes rich HTML5 Microdata (TechArticle graph) extracted cleanly by dual-parser.</p>
+            <button type="button" class="bm-load-btn">Load Report &rarr;</button>
+          </div>
+
+          <div class="benchmark-card" data-benchmark="basecamp">
+            <div class="bm-header">
+              <span class="bm-domain">Basecamp (basecamp.com)</span>
+              <span class="bm-score-badge fair">78 / 100</span>
+            </div>
+            <p class="bm-desc">Cookie consent dialog at top of body filtered by DOM scrubber; pricing subpage uses generic div header instead of nav.</p>
+            <button type="button" class="bm-load-btn">Load Report &rarr;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARCHITECTURE MODAL -->
+    <div id="architecture-modal" class="modal-overlay" style="display: none;">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div>
+            <div class="modal-title">AuraVision GEO™ Architecture & Composition</div>
+            <div class="modal-sub">Deterministic, recommend-only AI audit engine adhering to agentskills.io.</div>
+          </div>
+          <button type="button" id="btn-close-arch" class="modal-close-btn" title="Close modal">&times;</button>
+        </div>
+        <div class="modal-body-content">
+          <div class="arch-modal-flow">
+            <pre class="arch-ascii-flow">
+[ Input Website URL ] ──> audit-orchestrator (Root Entrypoint)
+                              │  • Single-pass HTTP fetch
+                              │  • Shared page set distribution
+       ┌──────────────────────┼──────────────────────┐
+       ▼                      ▼                      ▼
+crawl-and-render-audit  structured-fact-audit  trust-and-corroboration
+ • 12 AI bot tokens      • JSON-LD + Microdata  • Entity disambiguation
+ • robots.txt matrix     • Price pattern infer  • Stale temporal claims
+ • .xml.gz sitemaps      • Locked fact detect   • Single-source fragility
+       │                      │                      │
+       └──────────────────────┼──────────────────────┘
+                              ▼
+                        engagement-audit
+                         • 404/403 dead link sampling
+                         • Mobile viewport assurance
+                         • Semantic &lt;nav&gt; wrapping
+                              ▼
+                     aggregate_report.py
+                      • Jaccard Deduplication (≥ 0.60)
+                      • Mathematical 3×3 Severity Derivation
+                              ▼
+                 audit_report.json &amp; audit_report.md
+            </pre>
+          </div>
+          <div class="arch-features-list">
+            <div class="arch-feat-item">
+              <strong>Strictly Read-Only:</strong> Zero modifications, zero credentialed access, zero form submissions.
+            </div>
+            <div class="arch-feat-item">
+              <strong>Standard Library Only:</strong> Pure Python 3.8+ standard library, zero external pip packages.
+            </div>
+            <div class="arch-feat-item">
+              <strong>Sub-Minute Execution:</strong> Typical audit completes in ~5 to 10 seconds.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Toast Notification with SVG Checkmark -->
     <div id="toast" class="toast-msg">
@@ -569,8 +939,25 @@ Sitemap: https://example.com/sitemap.xml</pre>
     </div>
 
     <!-- Footer -->
-    <footer>
-      <p>AuraVision GEO & Discoverability Engine · Standard agentskills.io Marketplace Format · Read-only</p>
+    <footer class="app-footer">
+      <div class="footer-inner">
+        <div class="footer-brand-wrap">
+          <div class="footer-brand-heading">
+            <span class="footer-brand">AuraVision GEO<span class="footer-tm">™</span></span>
+            <span class="footer-pill">v1.0</span>
+          </div>
+          <span class="footer-desc">Enterprise Generative Engine Optimization & AI Discoverability Platform</span>
+        </div>
+        <div class="footer-links">
+          <a href="https://agentskills.io" target="_blank" rel="noopener noreferrer" class="footer-link">agentskills.io Standard</a>
+          <span class="footer-sep">&bull;</span>
+          <a href="https://github.com/Ketanrawat2004/Aura-Vision-GEO" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub Repository</a>
+          <span class="footer-sep">&bull;</span>
+          <span class="footer-badge-item">Adobe University Hackathon 2026</span>
+          <span class="footer-sep">&bull;</span>
+          <span class="footer-license">MIT License</span>
+        </div>
+      </div>
     </footer>
   </div>
 

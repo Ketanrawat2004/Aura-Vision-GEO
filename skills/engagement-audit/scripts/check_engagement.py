@@ -14,7 +14,7 @@ import urllib.error
 import urllib.request
 from urllib.parse import urljoin, urlparse
 
-USER_AGENT = "ai-visibility-audit/1.0 (+read-only site audit)"
+USER_AGENT = "Aura-Vision-GEO/1.0 (+read-only site audit)"
 TIMEOUT = 10
 MAX_LINKS_TO_CHECK = 8
 

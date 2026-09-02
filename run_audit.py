@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-One-command convenience runner for the AI Visibility Audit Marketplace.
+One-command convenience runner for the Aura-Vision-GEO Marketplace.
 Dispatches all 5 worker skills and aggregates their findings into audit_report.json and audit_report.md.
 
 Usage:
@@ -16,7 +16,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Run the full AI Visibility Audit pipeline on a target website.")
+    parser = argparse.ArgumentParser(description="Run the full Aura-Vision-GEO pipeline on a target website.")
     parser.add_argument("--site", required=True, help="Root website URL (e.g. https://stripe.com)")
     parser.add_argument("--pages", nargs="*", default=None, help="Specific page URLs to audit (defaults to root site)")
     parser.add_argument("--out", default="audit_report", help="Output basename (default: audit_report)")
@@ -30,7 +30,7 @@ def main():
     py_exec = sys.executable
 
     print(f"================================================================")
-    print(f"  AI Visibility Audit Pipeline")
+    print(f"  Aura-Vision-GEO — Enterprise AI & GEO Audit Pipeline")
     print(f"  Auditing: {site_url}")
     print(f"  Pages:    {', '.join(pages)}")
     print(f"================================================================")

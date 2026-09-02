@@ -1,6 +1,6 @@
 ---
 name: audit-orchestrator
-description: Entrypoint for the ai-visibility-audit marketplace. Given a website, runs crawl-and-render-audit, structured-fact-audit, trust-and-corroboration-audit, and engagement-audit, then merges their findings into one deduplicated, consistently-scored report against the fixed schema. Use this skill when asked to "audit <site> for AI visibility / discoverability / engagement", or when composing the outputs of the four worker skills into a final deliverable.
+description: Entrypoint for the Aura-Vision-GEO marketplace. Given a website, runs crawl-and-render-audit, structured-fact-audit, trust-and-corroboration-audit, and engagement-audit, then merges their findings into one deduplicated, consistently-scored report against the fixed schema. Use this skill when asked to "audit <site> for AI visibility / discoverability / engagement", or when composing the outputs of the four worker skills into a final deliverable.
 license: MIT
 allowed-tools: [bash, read_file, write_file]
 ---
@@ -8,7 +8,7 @@ allowed-tools: [bash, read_file, write_file]
 # Audit Orchestrator (entrypoint)
 
 ## When to use
-Invoke this skill whenever a user asks for a full AI-visibility / AI-discoverability / on-site-engagement audit of a website (a URL or bare domain). This is the only skill in the marketplace a caller should invoke directly — it invokes the four worker skills itself and is responsible for the final report.
+Invoke this skill whenever a user asks for a full AuraVision GEO / AI-discoverability / on-site-engagement audit of a website (a URL or bare domain). This is the only skill in the marketplace a caller should invoke directly — it invokes the four worker skills itself and is responsible for the final report.
 
 ## Inputs
 - `site` (required): a URL or domain, e.g. `https://example.com` or `example.com`. Normalize to a scheme-qualified root URL before dispatch (default `https://`, follow one redirect if the root 404s on https).

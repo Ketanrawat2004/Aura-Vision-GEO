@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Automated Test & Generalization Verification Suite
-for the Adobe University Hackathon 2026 Round-3 AI Visibility Audit Marketplace.
+for the Adobe University Hackathon 2026 Aura-Vision-GEO Platform.
 
 Tests all 5 worker skills and orchestrator aggregation against synthetic and live edge-case scenarios:
 1. AI Crawler Tokens & Robots.txt Disallows
@@ -9,7 +9,7 @@ Tests all 5 worker skills and orchestrator aggregation against synthetic and liv
 3. Content-Inferred Schema Validation (Multicurrency: $, ₹, €, £, ¥, USD, EUR, INR)
 4. Recursive JSON-LD & Microdata Extraction
 5. Mathematical Severity Matrix Derivation & Jaccard Deduplication
-6. Schema Adherence against the Adobe Hackathon Round 3 Report Specification
+6. Schema Adherence against the Adobe Hackathon Report Specification
 
 Usage:
     python test_generalization.py
@@ -24,7 +24,7 @@ import unittest
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
-class TestAIVisibilityGeneralization(unittest.TestCase):
+class TestAuraVisionGEOGeneralization(unittest.TestCase):
 
     def test_schema_matrix_derivation(self):
         """Verify mathematical severity derivation (Impact x Scope)."""
@@ -213,13 +213,28 @@ class TestAIVisibilityGeneralization(unittest.TestCase):
             self.assertEqual(report["findings"][0]["severity"], "critical")
             self.assertEqual(report["findings"][1]["severity"], "medium")
 
+            # Cryptographic Deterministic Proof
+            self.assertIn("verification", report)
+            self.assertTrue(report["verification"]["tamper_evident"])
+            self.assertTrue(report["verification"]["proof_hash"].startswith("sha256:"))
+
+    def test_rag_tokenomics_snr_and_cfi(self):
+        """Verify mathematical RAG tokenomics (Signal-to-Noise Ratio & Chunk Fragmentation Index)."""
+        sys.path.insert(0, os.path.join(BASE_DIR, "skills", "structured-fact-audit", "scripts"))
+        from check_structured_data import check_rag_signal_to_noise
+
+        bloated_html = "<div>" + ("<svg><path d='M0 0h10v10H0z'/></svg>" * 1800) + "</div><p>Core price is $10.</p>"
+        visible_text = "Core price is $10."
+        findings, opps = check_rag_signal_to_noise(bloated_html, visible_text)
+        self.assertTrue(any("Signal-to-Noise Ratio" in f["title"] for f in findings))
+
 
 def run_tests():
     print("=" * 64)
     print("  ADOBE UNIVERSITY HACKATHON 2026 — GENERALIZATION TEST SUITE")
     print("  Testing 5-Skill Marketplace, Parser Engines, & Schema Adherence")
     print("=" * 64)
-    suite = unittest.TestLoader().loadTestsFromTestCase(TestAIVisibilityGeneralization)
+    suite = unittest.TestLoader().loadTestsFromTestCase(TestAuraVisionGEOGeneralization)
     runner = unittest.TextTestRunner(verbosity=2)
     result = runner.run(suite)
     if result.wasSuccessful():

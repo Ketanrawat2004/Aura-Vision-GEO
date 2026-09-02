@@ -23,7 +23,7 @@ import sys
 import urllib.request
 from html.parser import HTMLParser
 
-USER_AGENT = "ai-visibility-audit/1.0 (+read-only site audit; respects robots.txt)"
+USER_AGENT = "Aura-Vision-GEO/1.0 (+read-only site audit; respects robots.txt)"
 TIMEOUT = 10
 
 SPA_SHELL_PATTERNS = [

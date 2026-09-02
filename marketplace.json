@@ -1,7 +1,7 @@
 {
-  "name": "ai-visibility-audit",
+  "name": "Aura-Vision-GEO",
   "version": "1.0.0",
-  "description": "Audits a website for AI-discoverability and on-site-engagement problems and emits a single structured findings report with evidence, severity, and prioritized fixes.",
+  "description": "Audits a website for AI-discoverability and Generative Engine Optimization (GEO) problems, emitting a single structured findings report with evidence, severity, and prioritized fixes.",
   "skills": [
     {
       "id": "audit-orchestrator",

@@ -25,7 +25,7 @@ import re
 import sys
 import urllib.request
 
-USER_AGENT = "ai-visibility-audit/1.0 (+read-only site audit; respects robots.txt)"
+USER_AGENT = "Aura-Vision-GEO/1.0 (+read-only site audit; respects robots.txt)"
 TIMEOUT = 10
 
 LDJSON_RE = re.compile(
@@ -69,7 +69,8 @@ def fetch(url):
 
 
 def strip_tags(html):
-    return re.sub(r"<[^>]+>", " ", html)
+    clean = re.sub(r'<(script|style|svg|noscript)[^>]*>.*?</\1>', ' ', html, flags=re.IGNORECASE | re.DOTALL)
+    return re.sub(r"<[^>]+>", " ", clean)
 
 
 def _collect_nodes(obj, nodes_list):
@@ -170,21 +171,47 @@ def check_knowledge_graph_anchoring(nodes):
 
 
 def check_rag_signal_to_noise(html, visible_text):
-    """Analyzes markup bloat (SVGs, inline scripts, CSS) vs clean content words."""
+    """Calculates mathematical RAG Signal-to-Noise Ratio (SNR) and Chunk Fragmentation Index (CFI)."""
+    findings = []
     opportunities = []
+    html = html or ""
+    visible_text = visible_text or ""
     total_len = len(html)
-    text_len = len(visible_text)
+    text_len = len(visible_text.strip())
     
-    if total_len > 80000 and (text_len / total_len) < 0.08:
-        opportunities.append({
-            "title": "High DOM markup bloat dilutes LLM chunking token budget",
+    if total_len > 0:
+        snr = (text_len / total_len) * 100.0
+        # Standard RAG chunk size: 512 tokens ~= 2048 UTF-8 bytes
+        cfi = max(1, round((total_len - text_len) / 2048))
+    else:
+        snr = 100.0
+        cfi = 1
+
+    if total_len > 60000 and snr < 12.0:
+        findings.append({
+            "title": f"Low RAG Signal-to-Noise Ratio ({snr:.1f}%) causes context chunk fragmentation",
+            "category": "discoverability",
+            "subcategory": "structured-data",
+            "impact": "degrading",
+            "scope": "single-page",
+            "confidence": "high",
+            "evidence": f"Total DOM is {total_len:,} bytes while factual prose is only {text_len:,} bytes (SNR: {snr:.1f}%). Estimated Chunk Fragmentation Index (CFI) is {cfi} chunks (512 tokens each) consumed by boilerplate markup.",
             "suggested_action": {
-                "summary": "Externalize large inline SVGs and embedded base64 data to improve clean text signal-to-noise ratio.",
-                "priority": "low",
-                "mechanism": "RAG scrapers consume substantial token budget parsing repetitive inline SVG paths, reducing the window available for core factual content."
+                "summary": f"Externalize inline SVGs and serialized blobs to raise clean text density above 15% (CFI target <= 5).",
+                "priority": "medium",
+                "mechanism": "Answer engine embedding models chunk text into 512-token windows; excessive markup boilerplate dilutes factual semantic density."
             }
         })
-    return opportunities
+    elif total_len > 35000 and snr < 18.0:
+        opportunities.append({
+            "title": f"Optimize RAG token density (Current SNR: {snr:.1f}%, CFI: {cfi} chunks)",
+            "suggested_action": {
+                "summary": "Externalize presentation code to reduce context window consumption for AI scrapers.",
+                "priority": "low"
+            }
+        })
+
+    return findings, opportunities
 
 
 def check_locked_facts(html):
@@ -323,7 +350,9 @@ def check_page(url, html):
     opportunities.extend(kg_opps)
 
     # RAG Signal-to-noise
-    opportunities.extend(check_rag_signal_to_noise(html, visible_text))
+    rag_findings, rag_opps = check_rag_signal_to_noise(html, visible_text)
+    findings.extend(rag_findings)
+    opportunities.extend(rag_opps)
 
     findings.extend(check_locked_facts(html))
     findings.extend(check_heading_structure(html))

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Pre-submission & Grading Verification Script
-for Adobe University Hackathon 2026 Round 3.
+for Adobe University Hackathon 2026.
 
 Performs automated sanity checking across all 6 official rubric criteria:
 1. agentskills.io format & YAML frontmatter validation

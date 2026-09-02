@@ -20,7 +20,7 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from urllib.parse import urljoin, urlparse
 
-USER_AGENT = "ai-visibility-audit/1.0 (+read-only site audit; respects robots.txt)"
+USER_AGENT = "Aura-Vision-GEO/1.0 (+read-only site audit; respects robots.txt)"
 TIMEOUT = 10
 
 # Known AI-agent / answer-engine fetcher tokens worth checking explicitly.
