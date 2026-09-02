@@ -20,6 +20,12 @@ Built strictly in accordance with the **[agentskills.io](https://agentskills.io)
 
 [Explore Web UI](#2-interactive-enterprise-web-dashboard) • [Quickstart](#4-quickstart--execution) • [Skill Taxonomy](#3-skill-taxonomy--failure-modes) • [Mathematical Derivations](#5-mathematical-foundations) • [Empirical Calibration](#6-empirical-ground-truth-calibration) • [Validation](#7-verification--test-suite)
 
+<br/>
+
+<p align="center">
+  <img src="docs/images/01-hero-dashboard.png" alt="AuraVision GEO Dashboard Hero" width="920"/>
+</p>
+
 </div>
 
 ---
@@ -218,14 +224,30 @@ python server.py --port 8000
 # Open http://127.0.0.1:8000 in your browser
 ```
 
+<p align="center">
+  <img src="docs/images/02-scorecard-pillars.png" alt="AuraVision GEO Scorecard & 5-Pillar Diagnostics" width="920"/>
+</p>
+
 #### Dashboard Capabilities:
 - **0–100 GEO Visibility Scorecard**: Dynamic circular SVG gauge with automated Letter Grade (A+, A, B, C, D, F) and tamper-evident SHA-256 cryptographic audit badge.
 - **5-Pillar Diagnostics Breakdown**: Real-time health bars for Crawlability, Hydration, Schema, Trust, and UX Retention.
 - **Side-by-Side "Before vs. After" AI Simulator**: Interactive query stress-tester showing what ChatGPT, Claude, and Perplexity say about your pricing, trials, and APIs on the **unpatched site** vs. **with the AuraVision patch applied**.
-- **Multi-Page Subpage Sampling**: Expandable audit drawer evaluating `/pricing`, `/docs`, and subdirectories in a single-pass parallel pipeline.
-- **High-Performance In-Memory Engine**: Single HTTP fetch shared across all 5 skill parsers, completing comprehensive audits in **1–4 seconds**.
+
+<p align="center">
+  <img src="docs/images/03-ai-simulator-comparison.png" alt="Side-by-Side Before vs After AI Simulator" width="920"/>
+</p>
+
 - **Autonomous Git Pull Request Patch Engine**: Generates a ready-to-merge unified Git patch (`.patch` / `.diff`) allowing developers to fix issues with a single command: `git apply auravision-fix.patch`.
 - **1-Click Fix Toolkit**: Instant, site-tailored `/llms.txt` builder, Schema.org JSON-LD snippet generator, and `robots.txt` patch.
+
+<p align="center">
+  <img src="docs/images/04-llms-protocol-builder.png" alt="1-Click /llms.txt Protocol Builder" width="920"/>
+</p>
+
+<p align="center">
+  <img src="docs/images/05-schema-and-robots-toolkit.png" alt="Schema.org and robots.txt Toolkit" width="920"/>
+</p>
+
 - **Export Suite**: 1-click download for machine-readable JSON, executive Markdown, and print/PDF formatting.
 - **Production Benchmarks Drawer**: Instant 1-click inspection of 6 pre-computed real-world audits (Stripe, Amazon India, Linear, NYTimes, MDN, Basecamp).
 - **Zero-Overlap Responsive Design**: Modern SaaS typography and fluid adaptive layouts across desktop, tablet, and mobile screens.
