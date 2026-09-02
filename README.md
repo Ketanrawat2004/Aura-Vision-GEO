@@ -127,6 +127,10 @@ AuraVision GEO decomposes technical audit reasoning into **5 focused skills** co
 └───────────────────────┘         └───────────────────────┘
 ```
 
+<p align="center">
+  <img src="docs/images/06-architecture-modal.png" alt="AuraVision GEO Architecture & 5-Skill Specification" width="920"/>
+</p>
+
 ### Marketplace Manifest (`marketplace.json`)
 ```json
 {
@@ -251,6 +255,11 @@ python server.py --port 8000
 - **Export Suite**: 1-click download for machine-readable JSON, executive Markdown, and print/PDF formatting.
 - **Production Benchmarks Drawer**: Instant 1-click inspection of 6 pre-computed real-world audits (Stripe, Amazon India, Linear, NYTimes, MDN, Basecamp).
 - **Zero-Overlap Responsive Design**: Modern SaaS typography and fluid adaptive layouts across desktop, tablet, and mobile screens.
+- **Executive Comparison Cards & Elevated SaaS Footer**: Side-by-side diagnosis of working capabilities vs. priority action items, with an elevated responsive SaaS shell.
+
+<p align="center">
+  <img src="docs/images/07-executive-comparison-footer.png" alt="Executive Comparison Cards & Elevated SaaS Footer" width="920"/>
+</p>
 
 ---
 
