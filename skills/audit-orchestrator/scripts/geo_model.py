@@ -107,20 +107,71 @@ def evaluate_site_against_1000_corpus(site_url, geo_score, snr=0.75, cfi=0.25, s
     ]
     
     # 3. Find closest enterprise peers via Weighted Attribute Distance
+    # 3. Determine predicted vertical
+    u_lower = site_url.lower()
+    predicted_vertical = None
+    if any(k in u_lower for k in ["github", "gitlab", "bitbucket", "dev", "api", "code", "repo", "infra", "deploy", "stack"]):
+        predicted_vertical = "Developer Tools & Infrastructure"
+    elif any(k in u_lower for k in ["stripe", "slack", "salesforce", "saas", "notion", "figma", "cloud", "hubspot"]):
+        predicted_vertical = "SaaS & Cloud Platforms"
+    elif any(k in u_lower for k in ["shop", "store", "buy", "cart", "retail", "amazon", "walmart", "target", "nike", "ebay", "etsy"]):
+        predicted_vertical = "E-Commerce & Retail"
+    elif any(k in u_lower for k in ["bank", "pay", "fin", "invest", "crypto", "coin", "wallet", "credit", "loan", "affirm"]):
+        predicted_vertical = "FinTech & Banking"
+    elif any(k in u_lower for k in ["news", "times", "post", "gazette", "media", "journal", "bbc", "reuters", "press"]):
+        predicted_vertical = "News & Digital Media"
+    elif any(k in u_lower for k in ["edu", "university", "school", "college", "course", "academy", "learn", "mit", "harvard"]):
+        predicted_vertical = "EdTech & Higher Education"
+    elif any(k in u_lower for k in ["health", "clinic", "hospital", "pharma", "medical", "care", "doctor"]):
+        predicted_vertical = "Healthcare & Life Sciences"
+    elif any(k in u_lower for k in ["ai", "openai", "anthropic", "deepmind", "huggingface", "model", "neural"]):
+        predicted_vertical = "AI & Machine Learning Labs"
+    elif any(k in u_lower for k in ["travel", "hotel", "flight", "airbnb", "booking", "trip", "tour", "vacation"]):
+        predicted_vertical = "Travel & Hospitality"
+
+    # 4. Find closest enterprise peers via Weighted Attribute Distance
     similarities = []
     for d in domains:
         d_vec = d.get("vector")
         if d_vec and len(d_vec) >= 5:
             sim = _feature_similarity(target_vec, d_vec)
+            # Give slight preference bonus to domains in same or related vertical
+            if predicted_vertical and d.get("vertical_name") == predicted_vertical:
+                sim = min(96.5, round(sim + 2.5, 1))
             similarities.append((sim, d))
             
     similarities.sort(key=lambda x: x[0], reverse=True)
+
+    if not predicted_vertical:
+        top_10 = similarities[:10]
+        vertical_votes = {}
+        for sim, d in top_10:
+            v_name = d.get("vertical_name", "SaaS & Cloud Platforms")
+            vertical_votes[v_name] = vertical_votes.get(v_name, 0) + sim
+        predicted_vertical = max(vertical_votes.items(), key=lambda x: x[1])[0] if vertical_votes else "SaaS & Cloud Platforms"
     
-    # Extract top 3 distinct enterprise peers
+    # Extract top 3 distinct enterprise peers (prioritize closest within or adjacent to predicted vertical)
     top_peers = []
     seen_domains = set()
     clean_site = site_url.replace("https://", "").replace("http://", "").replace("www.", "").split("/")[0].split("?")[0].lower()
     
+    # First pass: matching vertical peers
+    for sim, d in similarities:
+        d_name = d.get("domain", "")
+        if d_name.lower() == clean_site or d_name in seen_domains or "enterprise-node" in d_name:
+            continue
+        if d.get("vertical_name") == predicted_vertical:
+            seen_domains.add(d_name)
+            top_peers.append({
+                "domain": d_name,
+                "similarity": sim,
+                "vertical": d.get("vertical_name", "Enterprise Web"),
+                "geo_score": d.get("geo_score", 75)
+            })
+            if len(top_peers) == 2:
+                break
+
+    # Second pass: fill remaining with overall highest similarity
     for sim, d in similarities:
         d_name = d.get("domain", "")
         if d_name.lower() == clean_site or d_name in seen_domains or "enterprise-node" in d_name:
@@ -135,15 +186,6 @@ def evaluate_site_against_1000_corpus(site_url, geo_score, snr=0.75, cfi=0.25, s
         if len(top_peers) == 3:
             break
             
-    # 4. Predict industry vertical by majority vote among top 10 neighbors
-    top_10 = similarities[:10]
-    vertical_votes = {}
-    for sim, d in top_10:
-        v_name = d.get("vertical_name", "SaaS & Cloud Platforms")
-        vertical_votes[v_name] = vertical_votes.get(v_name, 0) + sim
-        
-    predicted_vertical = max(vertical_votes.items(), key=lambda x: x[1])[0] if vertical_votes else "SaaS & Cloud Platforms"
-    
     # 5. Get vertical benchmark comparison
     v_stats = None
     for v_k, v_data in corpus.get("verticals", {}).items():

@@ -239,7 +239,11 @@ def run_fast_audit(site_url, pages):
         snr=snr,
         cfi=cfi,
         schema_count=max(2, len(f_struct)),
-        ai_bots_allowed=not any(f.get("subcategory") == "crawlability" for f in deduped)
+        ai_bots_allowed=not any(
+            f.get("severity") == "critical" and 
+            ("block" in f.get("title", "").lower() or "disallow" in f.get("title", "").lower())
+            for f in deduped
+        )
     )
     report["benchmark_model"] = benchmark
 
