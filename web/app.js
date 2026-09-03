@@ -242,6 +242,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  const BENCHMARK_URLS = {
+    'stripe': 'https://stripe.com',
+    'amazon': 'https://www.amazon.in',
+    'linear': 'https://linear.app',
+    'nytimes': 'https://www.nytimes.com',
+    'mdn': 'https://developer.mozilla.org',
+    'basecamp': 'https://basecamp.com'
+  };
+
+  function loadBenchmarkReportById(benchmarkId) {
+    const target = BENCHMARK_URLS[benchmarkId] || 'https://stripe.com';
+    urlInput.value = target.replace(/^https?:\/\//, '');
+    executeAudit(target, [target]);
+  }
+
   // Benchmark cards inside modal
   document.querySelectorAll('.benchmark-card').forEach(card => {
     card.addEventListener('click', () => {
