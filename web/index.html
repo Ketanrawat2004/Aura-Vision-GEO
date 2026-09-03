@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=2.5">
+  <link rel="stylesheet" href="styles.css?v=2.6">
 </head>
 <body>
 
@@ -360,66 +360,125 @@
               </div>
             </div>
 
-            <!-- 5 Diagnostic Pillars Bar Chart -->
-            <div class="pillars-card">
-              <div class="pillar-item">
-                <div class="pillar-meta">
-                  <span class="pillar-name">
-                    <svg class="pillar-icon-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
-                    AI Crawler Admittance (robots.txt & Sitemaps)
-                  </span>
-                  <span id="p-crawl-val" class="pillar-score">100%</span>
+            <!-- 5 Diagnostic Pillars Bar Chart & SVG Radar Spider Chart Grid -->
+            <div class="pillars-and-radar-grid">
+              <div class="pillars-card">
+                <div class="pillar-item">
+                  <div class="pillar-meta">
+                    <span class="pillar-name">
+                      <svg class="pillar-icon-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
+                      AI Crawler Admittance (robots.txt & Sitemaps)
+                    </span>
+                    <span id="p-crawl-val" class="pillar-score">100%</span>
+                  </div>
+                  <div class="pillar-bar-bg"><div id="p-crawl-bar" class="pillar-bar-fill" style="width: 100%; background: var(--accent-emerald);"></div></div>
                 </div>
-                <div class="pillar-bar-bg"><div id="p-crawl-bar" class="pillar-bar-fill" style="width: 100%; background: var(--accent-emerald);"></div></div>
+
+                <div class="pillar-item">
+                  <div class="pillar-meta">
+                    <span class="pillar-name">
+                      <svg class="pillar-icon-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 12 12 17 22 12"/></svg>
+                      DOM Hydration & Static Extraction
+                    </span>
+                    <span id="p-render-val" class="pillar-score">100%</span>
+                  </div>
+                  <div class="pillar-bar-bg"><div id="p-render-bar" class="pillar-bar-fill" style="width: 100%; background: var(--accent-cyan);"></div></div>
+                </div>
+
+                <div class="pillar-item">
+                  <div class="pillar-meta">
+                    <span class="pillar-name">
+                      <svg class="pillar-icon-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/></svg>
+                      Structured Fact Graph (Schema.org / JSON-LD)
+                    </span>
+                    <span id="p-struct-val" class="pillar-score">60%</span>
+                  </div>
+                  <div class="pillar-bar-bg"><div id="p-struct-bar" class="pillar-bar-fill" style="width: 60%; background: var(--accent-amber);"></div></div>
+                </div>
+
+                <div class="pillar-item">
+                  <div class="pillar-meta">
+                    <span class="pillar-name">
+                      <svg class="pillar-icon-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                      Cross-Web Trust & Entity Disambiguation
+                    </span>
+                    <span id="p-trust-val" class="pillar-score">100%</span>
+                  </div>
+                  <div class="pillar-bar-bg"><div id="p-trust-bar" class="pillar-bar-fill" style="width: 100%; background: var(--accent-indigo);"></div></div>
+                </div>
+
+                <div class="pillar-item">
+                  <div class="pillar-meta">
+                    <span class="pillar-name">
+                      <svg class="pillar-icon-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="2"/></svg>
+                      On-Site Visitor Retention & Navigation UX
+                    </span>
+                    <span id="p-engage-val" class="pillar-score">85%</span>
+                  </div>
+                  <div class="pillar-bar-bg"><div id="p-engage-bar" class="pillar-bar-fill" style="width: 85%; background: var(--accent-cyan);"></div></div>
+                </div>
               </div>
 
-              <div class="pillar-item">
-                <div class="pillar-meta">
-                  <span class="pillar-name">
-                    <svg class="pillar-icon-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 12 12 17 22 12"/></svg>
-                    DOM Hydration & Static Extraction
-                  </span>
-                  <span id="p-render-val" class="pillar-score">100%</span>
+              <!-- Interactive Multi-Axis SVG Radar Pentagon Chart -->
+              <div class="radar-card">
+                <div class="radar-header">
+                  <span class="radar-title">GEO Footprint vs Industry Mean</span>
+                  <div class="radar-legend">
+                    <span class="legend-item"><span class="legend-dot site"></span>Target Site</span>
+                    <span class="legend-item"><span class="legend-dot bench"></span>Vertical Mean</span>
+                  </div>
                 </div>
-                <div class="pillar-bar-bg"><div id="p-render-bar" class="pillar-bar-fill" style="width: 100%; background: var(--accent-cyan);"></div></div>
-              </div>
-
-              <div class="pillar-item">
-                <div class="pillar-meta">
-                  <span class="pillar-name">
-                    <svg class="pillar-icon-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/></svg>
-                    Structured Fact Graph (Schema.org / JSON-LD)
-                  </span>
-                  <span id="p-struct-val" class="pillar-score">60%</span>
+                <div class="radar-chart-wrap">
+                  <svg id="geo-radar-svg" viewBox="0 0 320 280" class="radar-svg">
+                    <!-- Concentric Grid Rings -->
+                    <polygon class="radar-ring" points="160,30 274,113 230,247 90,247 46,113" />
+                    <polygon class="radar-ring" points="160,56 251,122 216,230 104,230 69,122" />
+                    <polygon class="radar-ring" points="160,82 228,132 202,212 118,212 92,132" />
+                    <polygon class="radar-ring" points="160,108 206,141 188,195 132,195 114,141" />
+                    <!-- Axis radiating lines -->
+                    <line x1="160" y1="160" x2="160" y2="30" class="radar-axis" />
+                    <line x1="160" y1="160" x2="274" y2="113" class="radar-axis" />
+                    <line x1="160" y1="160" x2="230" y2="247" class="radar-axis" />
+                    <line x1="160" y1="160" x2="90" y2="247" class="radar-axis" />
+                    <line x1="160" y1="160" x2="46" y2="113" class="radar-axis" />
+                    <!-- Benchmark Footprint (Vertical Mean) -->
+                    <polygon id="radar-poly-bench" class="radar-polygon-bench" points="160,50 250,120 215,230 105,230 70,120" />
+                    <!-- Site Footprint -->
+                    <polygon id="radar-poly-site" class="radar-polygon-site" points="160,35 265,115 210,235 110,235 55,115" />
+                    <!-- Vertex dots for site -->
+                    <circle id="radar-dot-0" class="radar-dot" cx="160" cy="35" r="4" />
+                    <circle id="radar-dot-1" class="radar-dot" cx="265" cy="115" r="4" />
+                    <circle id="radar-dot-2" class="radar-dot" cx="210" cy="235" r="4" />
+                    <circle id="radar-dot-3" class="radar-dot" cx="110" cy="235" r="4" />
+                    <circle id="radar-dot-4" class="radar-dot" cx="55" cy="115" r="4" />
+                    <!-- Axis Vertex Labels -->
+                    <text x="160" y="18" text-anchor="middle" class="radar-label">Crawl</text>
+                    <text x="282" y="116" text-anchor="start" class="radar-label">Hydration</text>
+                    <text x="238" y="265" text-anchor="middle" class="radar-label">Schema</text>
+                    <text x="82" y="265" text-anchor="middle" class="radar-label">Trust</text>
+                    <text x="38" y="116" text-anchor="end" class="radar-label">Retention</text>
+                  </svg>
                 </div>
-                <div class="pillar-bar-bg"><div id="p-struct-bar" class="pillar-bar-fill" style="width: 60%; background: var(--accent-amber);"></div></div>
-              </div>
-
-              <div class="pillar-item">
-                <div class="pillar-meta">
-                  <span class="pillar-name">
-                    <svg class="pillar-icon-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    Cross-Web Trust & Entity Disambiguation
-                  </span>
-                  <span id="p-trust-val" class="pillar-score">100%</span>
-                </div>
-                <div class="pillar-bar-bg"><div id="p-trust-bar" class="pillar-bar-fill" style="width: 100%; background: var(--accent-indigo);"></div></div>
-              </div>
-
-              <div class="pillar-item">
-                <div class="pillar-meta">
-                  <span class="pillar-name">
-                    <svg class="pillar-icon-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="2"/></svg>
-                    On-Site Visitor Retention & Navigation UX
-                  </span>
-                  <span id="p-engage-val" class="pillar-score">85%</span>
-                </div>
-                <div class="pillar-bar-bg"><div id="p-engage-bar" class="pillar-bar-fill" style="width: 85%; background: var(--accent-cyan);"></div></div>
               </div>
             </div>
 
           </div>
         </div>
+
+        <!-- AI Engine Live Readiness Matrix Card -->
+        <section class="readiness-matrix-container">
+          <div class="readiness-matrix-header">
+            <div class="readiness-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
+              AI ENGINE DISCOVERABILITY INDEX
+            </div>
+            <h3 class="readiness-title">Generative Search Engine Live Readiness Matrix</h3>
+            <p class="readiness-desc">Diagnostic visibility status and retrieval eligibility across the top 6 foundation model answer engines.</p>
+          </div>
+          <div id="readiness-grid" class="readiness-grid">
+            <!-- Dynamically populated by renderReadinessMatrix -->
+          </div>
+        </section>
 
         <!-- Global 1,000-Website Pre-Trained Intelligence Benchmark -->
         <section class="benchmark-container">
@@ -1038,6 +1097,6 @@ crawl-and-render-audit  structured-fact-audit  trust-and-corroboration
     </footer>
   </div>
 
-  <script src="app.js?v=2.5"></script>
+  <script src="app.js?v=2.6"></script>
 </body>
 </html>
