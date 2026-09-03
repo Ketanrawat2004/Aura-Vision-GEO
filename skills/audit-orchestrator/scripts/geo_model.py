@@ -114,7 +114,7 @@ def evaluate_site_against_1000_corpus(site_url, geo_score, snr=0.75, cfi=0.25, s
         predicted_vertical = "Developer Tools & Infrastructure"
     elif any(k in u_lower for k in ["stripe", "slack", "salesforce", "saas", "notion", "figma", "cloud", "hubspot"]):
         predicted_vertical = "SaaS & Cloud Platforms"
-    elif any(k in u_lower for k in ["shop", "store", "buy", "cart", "retail", "amazon", "walmart", "target", "nike", "ebay", "etsy"]):
+    elif any(k in u_lower for k in ["shop", "store", "buy", "cart", "retail", "amazon", "walmart", "target", "nike", "ebay", "etsy", "apparel", "wear", "cloth", "fashion", "brand", "gear", "fit", "gym"]):
         predicted_vertical = "E-Commerce & Retail"
     elif any(k in u_lower for k in ["bank", "pay", "fin", "invest", "crypto", "coin", "wallet", "credit", "loan", "affirm"]):
         predicted_vertical = "FinTech & Banking"
