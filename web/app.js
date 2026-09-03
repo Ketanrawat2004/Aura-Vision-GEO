@@ -414,13 +414,25 @@ document.addEventListener('DOMContentLoaded', () => {
     filterMedCount.textContent = summary.medium || 0;
     filterLowCount.textContent = summary.low || 0;
 
+    // Check if site is completely unreachable / offline
+    const isUnreachable = (report.findings || []).some(f => 
+      f.title.toLowerCase().includes('unreachable') || 
+      f.title.toLowerCase().includes('connection refused') ||
+      f.title.toLowerCase().includes('dns') ||
+      (f.evidence && f.evidence.toLowerCase().includes('could not establish http'))
+    );
+
     // Calculate GEO Score
     let score = 100;
-    score -= (summary.critical || 0) * 35;
-    score -= (summary.high || 0) * 15;
-    score -= (summary.medium || 0) * 7;
-    score -= (summary.low || 0) * 2;
-    score = Math.max(12, Math.min(100, score));
+    if (isUnreachable) {
+      score = 0;
+    } else {
+      score -= (summary.critical || 0) * 35;
+      score -= (summary.high || 0) * 15;
+      score -= (summary.medium || 0) * 7;
+      score -= (summary.low || 0) * 2;
+      score = Math.max(12, Math.min(100, score));
+    }
 
     scoreNum.textContent = score;
 
@@ -435,7 +447,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let statusText = 'Excellent AI Discoverability';
     let colorHex = 'var(--accent-emerald)';
 
-    if (score >= 90) {
+    if (isUnreachable) {
+      grade = 'F';
+      statusText = 'Site Offline / Connection Refused';
+      colorHex = 'var(--severity-critical)';
+    } else if (score >= 90) {
       grade = 'A+';
       statusText = 'Fully Optimized for AI Answer Engines';
       colorHex = 'var(--accent-emerald)';
@@ -468,8 +484,13 @@ document.addEventListener('DOMContentLoaded', () => {
     verdictGrade.textContent = grade;
     verdictGrade.style.color = colorHex;
 
-    verdictHeadline.textContent = `${report.site} receives Grade ${grade} (${score}/100)`;
-    verdictSummary.textContent = `${summary.total_findings} technical finding(s) detected across 5 diagnostic pillars. ${summary.critical} critical, ${summary.high} high, ${summary.medium} medium, and ${summary.low} low severity issues.`;
+    if (isUnreachable) {
+      verdictHeadline.textContent = `${report.site} is Offline / Unreachable (Grade F · 0/100)`;
+      verdictSummary.textContent = `Unable to connect to host. Domain resolution failed or target server is refusing connections. All AI crawlers and human visitors are blocked.`;
+    } else {
+      verdictHeadline.textContent = `${report.site} receives Grade ${grade} (${score}/100)`;
+      verdictSummary.textContent = `${summary.total_findings} technical finding(s) detected across 5 diagnostic pillars. ${summary.critical} critical, ${summary.high} high, ${summary.medium} medium, and ${summary.low} low severity issues.`;
+    }
 
     // Cryptographic Proof Badge
     const proofBadge = document.getElementById('audit-proof-badge');
@@ -503,6 +524,22 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function renderPillars(findings) {
+    const isUnreachable = findings.some(f => 
+      f.title.toLowerCase().includes('unreachable') || 
+      f.title.toLowerCase().includes('connection refused') ||
+      f.title.toLowerCase().includes('dns') ||
+      (f.evidence && f.evidence.toLowerCase().includes('could not establish http'))
+    );
+
+    if (isUnreachable) {
+      setPillarBar(pCrawlVal, pCrawlBar, 0);
+      setPillarBar(pRenderVal, pRenderBar, 0);
+      setPillarBar(pStructVal, pStructBar, 0);
+      setPillarBar(pTrustVal, pTrustBar, 0);
+      setPillarBar(pEngageVal, pEngageBar, 0);
+      return;
+    }
+
     let crawlScore = 100;
     let renderScore = 100;
     let structScore = 100;
@@ -554,6 +591,27 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderComparison(findings) {
     compWorkingList.innerHTML = '';
     compIssuesList.innerHTML = '';
+
+    const isUnreachable = findings.some(f => 
+      f.title.toLowerCase().includes('unreachable') || 
+      f.title.toLowerCase().includes('connection refused') ||
+      f.title.toLowerCase().includes('dns') ||
+      (f.evidence && f.evidence.toLowerCase().includes('could not establish http'))
+    );
+
+    if (isUnreachable) {
+      const emptyItem = document.createElement('li');
+      emptyItem.className = 'comp-item';
+      emptyItem.style.color = 'var(--text-muted)';
+      emptyItem.innerHTML = `<span class="comp-icon" style="color: var(--text-faint);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span> <span>No active web services detected — host is offline or domain does not exist</span>`;
+      compWorkingList.appendChild(emptyItem);
+
+      const issueItem = document.createElement('li');
+      issueItem.className = 'comp-item';
+      issueItem.innerHTML = `<span class="comp-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> <span>Host Connection Refused: Verify server availability and DNS resolution</span>`;
+      compIssuesList.appendChild(issueItem);
+      return;
+    }
 
     const hasCrawlBlock = findings.some(f => f.subcategory === 'crawlability' || f.title.toLowerCase().includes('robots.txt'));
     const hasStructIssue = findings.some(f => f.subcategory === 'structured-data');
@@ -625,6 +683,29 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function renderSimulator(findings) {
+    const isUnreachable = findings.some(f => 
+      f.title.toLowerCase().includes('unreachable') || 
+      f.title.toLowerCase().includes('connection refused') ||
+      f.title.toLowerCase().includes('dns') ||
+      (f.evidence && f.evidence.toLowerCase().includes('could not establish http'))
+    );
+
+    if (isUnreachable) {
+      [badgeChatGPT, badgeClaude, badgePerplexity, badgeGemini, badgeApple, badgeDeepSeek].forEach(b => {
+        if (b) {
+          b.className = 'sim-status-badge blocked';
+          b.textContent = 'Unreachable';
+        }
+      });
+      [textChatGPT, textClaude, textPerplexity, textGemini, textApple, textDeepSeek].forEach(t => {
+        if (t) {
+          t.textContent = 'Host connection refused or DNS resolution failed. Engine cannot reach target host.';
+        }
+      });
+      updateSimAnswer();
+      return;
+    }
+
     const isBlocked = findings.some(f => f.subcategory === 'crawlability' || f.title.toLowerCase().includes('robots.txt'));
     const evidenceText = findings.map(f => (f.evidence || '') + (f.title || '')).join(' ').toLowerCase();
     const structFinding = findings.find(f => f.subcategory === 'structured-data' && f.title.toLowerCase().includes('implies'));
@@ -713,6 +794,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const cleanDomain = site.replace(/^https?:\/\//, '').replace(/\/.*$/, '');
     const brand = cleanDomain.split('.')[0].toUpperCase();
 
+    const isUnreachable = findings.some(f => 
+      f.title.toLowerCase().includes('unreachable') || 
+      f.title.toLowerCase().includes('connection refused') ||
+      f.title.toLowerCase().includes('dns') ||
+      (f.evidence && f.evidence.toLowerCase().includes('could not establish http'))
+    );
+
     const isBlocked = findings.some(f => f.subcategory === 'crawlability' || f.title.toLowerCase().includes('robots.txt'));
     const isStructMissing = findings.some(f => f.subcategory === 'structured-data' && (f.title.toLowerCase().includes('implies') || f.title.toLowerCase().includes('product') || f.title.toLowerCase().includes('organization') || f.title.toLowerCase().includes('schema')));
     const hasRenderGap = findings.some(f => f.subcategory === 'rendering' || f.title.toLowerCase().includes('hydration') || f.title.toLowerCase().includes('spa'));
@@ -721,7 +809,24 @@ document.addEventListener('DOMContentLoaded', () => {
     let unpatchedHtml = '';
     let patchedHtml = '';
 
-    if (isBlocked) {
+    if (isUnreachable) {
+      unpatchedHtml = `
+        <div style="font-style: italic; margin-bottom: 0.6rem; color: #991b1b; line-height: 1.5;">
+          "I attempted to search ${escapeHtml(cleanDomain)} regarding '${escapeHtml(rawPrompt)}', but could not connect to the server (DNS resolution failed or host connection refused). The host is offline."
+        </div>
+        <div style="font-size: 0.78rem; background: #fee2e2; padding: 0.45rem 0.65rem; border-radius: 6px; border: 1px solid #fca5a5; color: #991b1b;">
+          <strong>🚨 Total Network Drop-off:</strong> Answer engines cannot crawl or cite an offline host. All AI traffic is dropped.
+        </div>
+      `;
+      patchedHtml = `
+        <div style="font-style: italic; margin-bottom: 0.6rem; color: #166534; line-height: 1.5;">
+          "Host server availability must be restored first. Once DNS A/AAAA records and SSL certificates are live on ${escapeHtml(cleanDomain)}, AuraVision's /llms.txt and Schema.org graphs can be deployed to enable immediate AI discovery."
+        </div>
+        <div style="font-size: 0.78rem; background: #dcfce7; padding: 0.45rem 0.65rem; border-radius: 6px; border: 1px solid #86efac; color: #166534;">
+          <strong>⚠️ Prerequisite Action:</strong> Configure active DNS routing and web server listeners.
+        </div>
+      `;
+    } else if (isBlocked) {
       unpatchedHtml = `
         <div style="font-style: italic; margin-bottom: 0.6rem; color: #991b1b; line-height: 1.5;">
           "I searched for '${escapeHtml(rawPrompt)}' on ${escapeHtml(cleanDomain)}, but I cannot access real-time information from this website because automated browsing is disallowed in their robots.txt policy."
