@@ -228,25 +228,35 @@ Calibrated against **1,000 top enterprise web properties** across **10 global in
 
 ## 4. Quickstart & Execution
 
-### Method 1: Single-Command Pipeline Runner
-Run a full 5-skill audit directly from the command line:
+### ⚡ Method 1: 1-Click Evaluation Launcher (Recommended for Judges)
+Evaluate the full system in a single command — automatically runs compliance tests, starts the dashboard server, and opens your browser:
 
 ```bash
-# Basic audit against root domain
-python run_audit.py --site https://stripe.com --out audit_report
-
-# Deep multi-page audit (sampling pricing and documentation)
-python run_audit.py --site https://stripe.com --pages https://stripe.com https://stripe.com/pricing https://stripe.com/docs --out audit_report
+# 1-Click Evaluation: Tests environment, starts server, opens browser
+python demo.py
 ```
-
-Deliverables generated:
-- `audit_report.json`: Machine-readable findings adhering strictly to `references/schema.md`.
-- `audit_report.md`: Non-expert executive summary report with prioritized action items.
 
 ---
 
-### Method 2: Interactive Enterprise Web Dashboard
-Launch the local web dashboard and live API server:
+### 💻 Method 2: Instant Terminal CLI Audit (`audit.py`)
+Run an instant, zero-dependency audit directly in your terminal with colorized ASCII scorecards, pillar progress bars, and cryptographic proof:
+
+```bash
+# Run live terminal audit
+python audit.py https://stripe.com
+
+# Audit pre-calibrated benchmarks
+python audit.py --preset linear
+python audit.py --preset stripe
+
+# Output raw machine-readable JSON adhering to agentskills.io schema
+python audit.py https://stripe.com --format json
+```
+
+---
+
+### 🌐 Method 3: Interactive Enterprise Web Dashboard
+Launch the local web dashboard directly:
 
 ```bash
 # Start local dashboard server (Port 8000)
