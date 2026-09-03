@@ -559,10 +559,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Compute Diagnostic Pillars
-    renderPillars(report.findings || [], isUnreachable);
+    const pillarScores = renderPillars(report.findings || [], isUnreachable);
 
     // Render 5-Pillar SVG Radar Pentagon Chart
-    renderRadarChart(report, isUnreachable);
+    renderRadarChart(report, isUnreachable, pillarScores);
 
     // Render AI Engine Live Readiness Matrix
     renderReadinessMatrix(report, isUnreachable);
@@ -636,6 +636,14 @@ document.addEventListener('DOMContentLoaded', () => {
     setPillarBar(pStructVal, pStructBar, structScore);
     setPillarBar(pTrustVal, pTrustBar, trustScore);
     setPillarBar(pEngageVal, pEngageBar, engageScore);
+
+    return {
+      crawl: crawlScore,
+      render: renderScore,
+      struct: structScore,
+      trust: trustScore,
+      engage: engageScore
+    };
   }
 
   function setPillarBar(valEl, barEl, score) {
@@ -1356,7 +1364,7 @@ Sitemap: ${siteUrl}/sitemap.xml`;
     return md;
   }
 
-  function renderRadarChart(report, isUnreachable) {
+  function renderRadarChart(report, isUnreachable, pillarScores) {
     const sitePoly = document.getElementById('radar-poly-site');
     const benchPoly = document.getElementById('radar-poly-bench');
     if (!sitePoly || !benchPoly) return;
@@ -1373,17 +1381,8 @@ Sitemap: ${siteUrl}/sitemap.xml`;
       return;
     }
 
-    const bm = report.benchmark_model || {};
-    const mp = bm.metrics_percentiles || {};
-
-    const siteVals = [
-      mp.ai_crawlability !== undefined ? mp.ai_crawlability : 90,
-      report.summary && report.summary.hydration_ratio !== undefined ? Math.round(report.summary.hydration_ratio * 100) : 85,
-      mp.structured_data !== undefined ? mp.structured_data : 65,
-      90,
-      mp.chunk_fragmentation !== undefined ? mp.chunk_fragmentation : 82
-    ];
-
+    const ps = pillarScores || { crawl: 90, render: 85, struct: 60, trust: 90, engage: 85 };
+    const siteVals = [ps.crawl, ps.render, ps.struct, ps.trust, ps.engage];
     const benchVals = [82, 75, 60, 78, 70];
 
     const cx = 160;
