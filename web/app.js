@@ -633,6 +633,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function formatOrdinal(n) {
+    const s = ["th", "st", "nd", "rd"];
+    const v = Math.abs(n) % 100;
+    return s[(v - 20) % 10] || s[v] || s[0];
+  }
+
   function renderBenchmarkModel(bm, isUnreachable, score) {
     const container = document.querySelector('.benchmark-container');
     if (!container) return;
@@ -647,6 +653,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const vertDeltaEl = document.getElementById('bench-vert-delta');
     const globalPctEl = document.getElementById('bench-global-percentile');
     const pctBarEl = document.getElementById('bench-percentile-bar');
+    const benchUnit = document.querySelector('.percentile-hero .bench-unit');
 
     const globalPct = bm.global_percentile !== undefined ? bm.global_percentile : Math.max(12, Math.min(98, score));
     if (vertNameEl) vertNameEl.textContent = bm.predicted_vertical || 'Enterprise Web Property';
@@ -656,6 +663,7 @@ document.addEventListener('DOMContentLoaded', () => {
       vertDeltaEl.style.color = delta.startsWith('-') ? 'var(--severity-critical)' : '#059669';
     }
     if (globalPctEl) globalPctEl.textContent = globalPct;
+    if (benchUnit) benchUnit.textContent = formatOrdinal(globalPct);
     if (pctBarEl) pctBarEl.style.width = `${globalPct}%`;
 
     const mp = bm.metrics_percentiles || {};
@@ -664,10 +672,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const cfiPct = document.getElementById('bench-pct-cfi');
     const schemaPct = document.getElementById('bench-pct-schema');
 
-    if (crawlPct) crawlPct.textContent = `${mp.ai_crawlability !== undefined ? mp.ai_crawlability : 88}th %`;
-    if (snrPct) snrPct.textContent = `${mp.rag_snr !== undefined ? mp.rag_snr : 84}th %`;
-    if (cfiPct) cfiPct.textContent = `${mp.chunk_fragmentation !== undefined ? mp.chunk_fragmentation : 89}th %`;
-    if (schemaPct) schemaPct.textContent = `${mp.structured_data !== undefined ? mp.structured_data : 72}th %`;
+    const cVal = mp.ai_crawlability !== undefined ? mp.ai_crawlability : 88;
+    const sVal = mp.rag_snr !== undefined ? mp.rag_snr : 84;
+    const fVal = mp.chunk_fragmentation !== undefined ? mp.chunk_fragmentation : 89;
+    const scVal = mp.structured_data !== undefined ? mp.structured_data : 72;
+
+    if (crawlPct) crawlPct.textContent = `${cVal}${formatOrdinal(cVal)} %`;
+    if (snrPct) snrPct.textContent = `${sVal}${formatOrdinal(sVal)} %`;
+    if (cfiPct) cfiPct.textContent = `${fVal}${formatOrdinal(fVal)} %`;
+    if (schemaPct) schemaPct.textContent = `${scVal}${formatOrdinal(scVal)} %`;
 
     const peersList = document.getElementById('bench-peers-list');
     if (peersList) {
@@ -677,9 +690,12 @@ document.addEventListener('DOMContentLoaded', () => {
         { domain: 'vercel.com', similarity: 91.1, vertical: 'Developer Tools & Infrastructure' }
       ];
       peersList.innerHTML = peers.map(p => `
-        <div class="peer-item" title="Cosine Similarity Vector: ${p.similarity}%">
-          <div class="peer-domain">${p.domain}</div>
-          <div class="peer-meta"><span class="peer-sim">${p.similarity}% match</span> · <span class="peer-vert">${p.vertical}</span></div>
+        <div class="peer-item" title="Similarity Vector Score: ${p.similarity}%">
+          <div class="peer-header">
+            <span class="peer-domain">${p.domain}</span>
+            <span class="peer-sim">${p.similarity}% match</span>
+          </div>
+          <div class="peer-vert">${p.vertical}</div>
         </div>
       `).join('');
     }

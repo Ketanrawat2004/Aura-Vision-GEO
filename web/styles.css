@@ -1305,13 +1305,15 @@ body::before {
 
 .peer-item {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.45rem 0.75rem;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.55rem 0.75rem;
   background: var(--bg-surface-elevated);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   transition: transform 0.15s ease, border-color 0.15s ease;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .peer-item:hover {
@@ -1319,25 +1321,47 @@ body::before {
   transform: translateX(3px);
 }
 
-.peer-domain {
-  font-family: var(--font-mono);
-  font-size: 0.84rem;
-  font-weight: 700;
-  color: var(--text-main);
+.peer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-width: 0;
 }
 
-.peer-meta {
-  font-size: 0.75rem;
+.peer-domain {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
 }
 
 .peer-sim {
   font-family: var(--font-mono);
+  font-size: 0.7rem;
   font-weight: 800;
-  color: #059669;
+  color: #047857;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .peer-vert {
+  font-size: 0.72rem;
+  font-weight: 600;
   color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  min-width: 0;
 }
 
 /* ==========================================================================
