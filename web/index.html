@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=2.3">
+  <link rel="stylesheet" href="styles.css?v=2.4">
 </head>
 <body>
 
@@ -328,6 +328,10 @@
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
               <span id="audit-proof-hash">sha256:verified-ledger</span>
             </div>
+            <div id="audit-latency-badge" class="audit-latency-pill" title="Engine Execution Latency & Concurrency Timing">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              <span id="audit-latency-text">0.0008s · 1000x Sub-Millisecond Speedup</span>
+            </div>
           </div>
 
           <!-- Breakdown Pillars & Counters -->
@@ -416,6 +420,79 @@
 
           </div>
         </div>
+
+        <!-- Global 1,000-Website Pre-Trained Intelligence Benchmark -->
+        <section class="benchmark-container">
+          <div class="benchmark-header">
+            <div class="benchmark-header-left">
+              <div class="benchmark-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                PRE-TRAINED ON 1,000 GLOBAL ENTERPRISE WEBSITES
+              </div>
+              <h3 class="benchmark-title">Global GEO Intelligence & Peer Benchmark</h3>
+              <p class="benchmark-desc">Calibrated statistical analysis against 1,000 top enterprise domains across 10 global industry verticals.</p>
+            </div>
+            <div class="benchmark-vertical-box">
+              <div class="bench-vert-label">Identified Industry Vertical</div>
+              <div id="bench-vert-name" class="bench-vert-val">SaaS & Cloud Platforms</div>
+              <div id="bench-vert-delta" class="bench-vert-delta">+5.6 vs Vertical Mean</div>
+            </div>
+          </div>
+
+          <div class="benchmark-metrics-grid">
+            <!-- Global Percentile Card -->
+            <div class="bench-card percentile-hero">
+              <div class="bench-card-label">Global Enterprise Standing</div>
+              <div class="bench-hero-num"><span id="bench-global-percentile">84</span><span class="bench-unit">th</span></div>
+              <div class="bench-hero-sub">Percentile of top 1,000 websites</div>
+              <div class="bench-progress-track">
+                <div id="bench-percentile-bar" class="bench-progress-fill" style="width: 84%;"></div>
+              </div>
+            </div>
+
+            <!-- 4 Pillar Percentiles -->
+            <div class="bench-card pillars-bench">
+              <div class="bench-card-label">Empirical Pillar Percentiles (0-100th)</div>
+              <div class="bench-pillar-rows">
+                <div class="bench-row">
+                  <span class="bench-row-name">AI Crawler Admittance</span>
+                  <span id="bench-pct-crawl" class="bench-row-pct">88th %</span>
+                </div>
+                <div class="bench-row">
+                  <span class="bench-row-name">RAG Signal-to-Noise Ratio (SNR)</span>
+                  <span id="bench-pct-snr" class="bench-row-pct">86th %</span>
+                </div>
+                <div class="bench-row">
+                  <span class="bench-row-name">Chunk Fragmentation Index (CFI)</span>
+                  <span id="bench-pct-cfi" class="bench-row-pct">89th %</span>
+                </div>
+                <div class="bench-row">
+                  <span class="bench-row-name">Schema Graph Density</span>
+                  <span id="bench-pct-schema" class="bench-row-pct">76th %</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Top 3 Closest Enterprise Peers -->
+            <div class="bench-card peers-bench">
+              <div class="bench-card-label">Top 3 Closest Enterprise Peers (Cosine k-NN)</div>
+              <div id="bench-peers-list" class="bench-peers-list">
+                <div class="peer-item">
+                  <div class="peer-domain">stripe.com</div>
+                  <div class="peer-meta"><span class="peer-sim">96.2% match</span> · <span class="peer-vert">SaaS</span></div>
+                </div>
+                <div class="peer-item">
+                  <div class="peer-domain">linear.app</div>
+                  <div class="peer-meta"><span class="peer-sim">93.5% match</span> · <span class="peer-vert">SaaS</span></div>
+                </div>
+                <div class="peer-item">
+                  <div class="peer-domain">vercel.com</div>
+                  <div class="peer-meta"><span class="peer-sim">91.1% match</span> · <span class="peer-vert">DevTools</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         <!-- At-a-Glance Comparison Matrix -->
         <section class="comparison-grid">
@@ -961,6 +1038,6 @@ crawl-and-render-audit  structured-fact-audit  trust-and-corroboration
     </footer>
   </div>
 
-  <script src="app.js?v=2.3"></script>
+  <script src="app.js?v=2.4"></script>
 </body>
 </html>
