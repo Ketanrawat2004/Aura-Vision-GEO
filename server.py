@@ -332,8 +332,9 @@ class AuditHandler(http.server.SimpleHTTPRequestHandler):
 
 
 def main():
+    default_port = int(os.environ.get("PORT", PORT))
     parser = argparse.ArgumentParser(description="Aura-Vision-GEO Web Server")
-    parser.add_argument("--port", type=int, default=PORT, help="Port to listen on (default: 8000)")
+    parser.add_argument("--port", type=int, default=default_port, help=f"Port to listen on (default: {default_port})")
     args = parser.parse_args()
 
     server_address = ("", args.port)
