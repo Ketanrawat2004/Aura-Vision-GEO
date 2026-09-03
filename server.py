@@ -135,6 +135,13 @@ def run_fast_audit(site_url, pages):
 
     deduped = c_agg.dedupe(all_findings)
     report = c_agg.build_report(site_url, deduped, all_opps)
+    if not fetched_at_least_one and not f_crawl:
+        report["is_unreachable"] = True
+        report["score"] = 0
+        report["grade"] = "F"
+        report["status"] = "Site Offline / Connection Refused"
+        if "summary" in report:
+            report["summary"]["is_unreachable"] = True
     return report
 
 
@@ -203,6 +210,9 @@ class AuditHandler(http.server.SimpleHTTPRequestHandler):
         self.send_header("Access-Control-Allow-Origin", "*")
         self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
         self.send_header("Access-Control-Allow-Headers", "Content-Type")
+        self.send_header("Cache-Control", "no-cache, no-store, must-revalidate")
+        self.send_header("Pragma", "no-cache")
+        self.send_header("Expires", "0")
         super().end_headers()
 
 

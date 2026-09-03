@@ -117,6 +117,7 @@ def build_report(site, findings, opportunities):
             "title": f["title"],
             "severity": f["severity"],
             "category": f.get("category", "discoverability"),
+            "subcategory": f.get("subcategory", f.get("category", "discoverability")),
             "confidence": f.get("confidence", "medium"),
             "evidence": f["evidence"],
             "suggested_action": f["suggested_action"],

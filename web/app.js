@@ -502,10 +502,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Compute Diagnostic Pillars
-    renderPillars(report.findings || []);
+    renderPillars(report.findings || [], isUnreachable);
 
     // Working vs Issues Matrix
-    renderComparison(report.findings || []);
+    renderComparison(report.findings || [], isUnreachable);
 
     // Render Findings List
     renderFindingsFeed();
@@ -514,7 +514,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderOpportunities(report.opportunities || []);
 
     // Render Simulator
-    renderSimulator(report.findings || []);
+    renderSimulator(report.findings || [], isUnreachable);
 
     // Render Toolkit
     renderToolkit(report);
@@ -523,8 +523,8 @@ document.addEventListener('DOMContentLoaded', () => {
     resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  function renderPillars(findings) {
-    const isUnreachable = findings.some(f => 
+  function renderPillars(findings, forceUnreachable) {
+    const isUnreachable = forceUnreachable || findings.some(f => 
       f.title.toLowerCase().includes('unreachable') || 
       f.title.toLowerCase().includes('connection refused') ||
       f.title.toLowerCase().includes('dns') ||
@@ -588,11 +588,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function renderComparison(findings) {
+  function renderComparison(findings, forceUnreachable) {
     compWorkingList.innerHTML = '';
     compIssuesList.innerHTML = '';
 
-    const isUnreachable = findings.some(f => 
+    const isUnreachable = forceUnreachable || findings.some(f => 
       f.title.toLowerCase().includes('unreachable') || 
       f.title.toLowerCase().includes('connection refused') ||
       f.title.toLowerCase().includes('dns') ||
@@ -682,8 +682,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  function renderSimulator(findings) {
-    const isUnreachable = findings.some(f => 
+  function renderSimulator(findings, forceUnreachable) {
+    const isUnreachable = forceUnreachable || findings.some(f => 
       f.title.toLowerCase().includes('unreachable') || 
       f.title.toLowerCase().includes('connection refused') ||
       f.title.toLowerCase().includes('dns') ||
