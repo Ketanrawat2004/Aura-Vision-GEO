@@ -567,7 +567,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Render AI Engine Live Readiness Matrix
     renderReadinessMatrix(report, isUnreachable);
 
-    // Global 1,000-Website Pre-Trained Benchmark Model
+    // Global 1,000-Website Empirical Benchmark Model
     renderBenchmarkModel(report.benchmark_model || {}, isUnreachable, score);
 
     // Working vs Issues Matrix

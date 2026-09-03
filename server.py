@@ -232,7 +232,7 @@ def run_fast_audit(site_url, pages):
                 try: cfi = float(m.group(1))
                 except Exception: pass
 
-    # Evaluate site against 1,000-Website Pre-Trained Intelligence Model
+    # Evaluate site against 1,000-Website Empirical Benchmark Model
     benchmark = c_geo.evaluate_site_against_1000_corpus(
         site_url,
         score,

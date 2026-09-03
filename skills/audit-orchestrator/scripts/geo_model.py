@@ -1,42 +1,33 @@
 #!/usr/bin/env python3
 """
-AuraVision GEO™ — Pre-Trained Statistical Classifier & 1,000-Website Intelligence Engine.
-100% Pure Python 3.8+ Standard Library (math, json, os). Zero external pip dependencies.
-
-Provides:
-- Empirical Percentile Rankings (0-100th) calibrated on 1,000 top enterprise domains.
-- k-Nearest Neighbors Cosine Similarity Matching to identify closest enterprise peers.
-- Vertical distribution benchmarking across 10 major global industries.
+AuraVision GEO - Statistical Classifier & 1,000-Website Empirical Benchmark Engine.
+Calibrated against 1,000 top enterprise web properties across 10 global industry verticals.
+Computes empirical percentiles (SNR, CFI, Schema, Crawlability) and closest peers via Cosine k-NN.
+Built with 100% Python Standard Library. Zero external dependencies.
 """
 import os
 import json
 import math
+import statistics
 
+CORPUS_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "enterprise_corpus_1000.json")
+
+# In-memory corpus singleton
 _CACHED_CORPUS = None
+
 
 def _load_corpus():
     global _CACHED_CORPUS
     if _CACHED_CORPUS is not None:
         return _CACHED_CORPUS
-    
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    corpus_path = os.path.join(script_dir, "..", "data", "enterprise_corpus_1000.json")
-    
-    if not os.path.exists(corpus_path):
-        # Fallback path if running from workspace root
-        corpus_path = os.path.join("skills", "audit-orchestrator", "data", "enterprise_corpus_1000.json")
-        
+    if not os.path.exists(CORPUS_PATH):
+        return {"domains": []}
     try:
-        with open(corpus_path, "r", encoding="utf-8") as f:
+        with open(CORPUS_PATH, "r", encoding="utf-8") as f:
             _CACHED_CORPUS = json.load(f)
-    except Exception as e:
-        # Graceful fallback baseline if file read fails
-        _CACHED_CORPUS = {
-            "metadata": {"total_domains": 1000, "version": "1.0.0"},
-            "verticals": {},
-            "domains": []
-        }
-    return _CACHED_CORPUS
+            return _CACHED_CORPUS
+    except Exception:
+        return {"domains": []}
 
 
 def _feature_similarity(v1, v2):
@@ -53,7 +44,7 @@ def _feature_similarity(v1, v2):
 
 def evaluate_site_against_1000_corpus(site_url, geo_score, snr=0.75, cfi=0.25, schema_count=10, ai_bots_allowed=True, hydration_ratio=0.75):
     """
-    Evaluates an audited web property against the pre-trained 1,000-website intelligence corpus.
+    Evaluates an audited web property against the 1,000-website empirical benchmark corpus.
     Returns percentile ranks, vertical classification, and top 3 enterprise peers.
     """
     corpus = _load_corpus()
