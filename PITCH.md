@@ -1,86 +1,78 @@
-# AuraVision GEO™ — Executive Judge Evaluation Guide
+# AuraVision GEO — Executive Evaluation Summary
 ### Adobe University Hackathon 2026 | agentskills.io Marketplace Standard
 
-> **"In the AI era, search engines don't rank websites — answer engines summarize them. If an AI assistant cannot parse your facts, you don't drop to page 2; you cease to exist."**
+> "In the AI retrieval era, answer engines summarize content via RAG rather than presenting traditional link indexes. If an assistant cannot parse a site's facts, the brand is omitted from generated responses."
 
 ---
 
-## ⚡ 1. The 90-Second Executive Pitch
+## 1. Executive Summary
 
-While 95% of hackathon teams build traditional Google SEO tools or simple LLM prompt wrappers, **AuraVision GEO™ encodes automated technical reasoning to diagnose and fix the two catastrophic failure modes of the generative era:**
+AuraVision GEO encodes automated technical reasoning to diagnose and remediate two primary failure modes encountered by answer engines:
 
-1. **AI Invisibility & Misrepresentation (Off-Site Discoverability)**:
-   Why ChatGPT, Claude, Perplexity, Gemini, and DeepSeek block, skip, or hallucinate your pricing and features.
-2. **The Engagement Drop-Off (On-Site Retention)**:
-   Why human visitors arriving from an AI citation immediately bounce without converting.
+1. **Retrieval and Extraction Barriers (Off-Site Discoverability)**:
+   Investigates why generative answer engines (ChatGPT, Claude, Perplexity, Gemini, DeepSeek) block, bypass, or misstate factual data.
+2. **On-Site Retention Friction**:
+   Evaluates why visitors arriving via external citations bounce prematurely due to navigation or formatting defects.
 
-Built strictly per the **[agentskills.io](https://agentskills.io)** standard with **zero external pip dependencies**, running in **under 4 seconds**, and delivering an **autonomous closed-loop Git Pull Request patch (`.patch`)**.
+Built strictly per the **[agentskills.io](https://agentskills.io)** specification with **zero external pip dependencies**, completing audits in **under 2.5 seconds** and outputting actionable unified git diffs (`auravision-fix.patch`).
 
 ---
 
-## 🏆 2. Why AuraVision GEO™ is Defensible & Uncopyable
+## 2. Technical and Mathematical Foundations
 
-Generic coding assistants and competitors cannot replicate this platform because it is built upon **three proprietary mathematical and cryptographic foundations**:
-
-### A. Mathematical RAG Tokenomics & Chunk Fragmentation Index ($CFI$)
-Traditional tools only check if HTML tags exist. AuraVision GEO models how AI retrieval encoders actually chunk web pages into 512-token windows:
+### A. RAG Tokenomics: Signal-to-Noise Ratio & Chunk Fragmentation Index
+Models how retrieval encoders segment content into standard 512-token context windows:
 $$\text{Signal-to-Noise Ratio (SNR)} = \frac{\text{Bytes}_{\text{factual prose}}}{\text{Bytes}_{\text{raw markup}}} \times 100\%$$
 $$\text{Chunk Fragmentation Index (CFI)} = \max\left(1, \left\lfloor \frac{\text{Bytes}_{\text{markup}} - \text{Bytes}_{\text{prose}}}{2048} \right\rfloor\right)$$
-It calculates the exact number of RAG chunks an AI agent burns on SVG, CSS, and base64 bloat before reaching the first factual proposition.
+Calculates the volume of markup overhead processed before reaching factual text content.
 
-### B. Cryptographically Verified Audit Certificate (SHA-256 Ledger)
-To guarantee determinism and eliminate AI hallucination suspicion, every audit computes an immutable cryptographic digest:
+### B. Cryptographic Audit Proof (SHA-256 Ledger)
+Every audit produces an immutable digest to verify determinism and repeatability:
 $$\text{Proof Hash} = \text{SHA256}(\text{Site} \parallel \text{Timestamp} \parallel \text{Findings Matrix})$$
-Every report and dashboard view embeds a tamper-evident audit badge verifying that the results were deterministically computed from ground-truth evidence.
+Reports and dashboard cards embed this tamper-evident audit badge.
 
-### C. Closed-Loop Autonomous Self-Healing (Git Patch Engine)
-Competitors give developers a list of errors. **AuraVision GEO generates the actual code solution.**
-With 1-click, it synthesizes a ready-to-merge Unified Git Patch (`.diff` / `.patch`) that developers can apply locally with:
+### C. Unified Git Patch Generation
+Synthesizes an inspectable unified git diff (`auravision-fix.patch`) that engineering teams apply locally:
 ```bash
 git apply auravision-fix.patch
 ```
-It simultaneously auto-generates a canonical `/llms.txt` manifest, Schema.org JSON-LD graphs, and `robots.txt` AI crawler rules.
-
-### D. Interactive "Before vs. After" Hallucination Stress-Tester
-In the live UI, judges can test real customer prompts (e.g. *"What are the pricing tiers?"*). AuraVision GEO renders a side-by-side comparison:
-* **Current Reality (Unpatched Site)**: Shows where ChatGPT/Perplexity hallucinates or gets blocked.
-* **Optimized Reality (With 1-Click Patch)**: Shows 100% grounded quotes attributed to verified Schema.org nodes.
+Simultaneously synthesizes `/llms.txt` manifests, Schema.org JSON-LD definitions, and `robots.txt` crawler policies.
 
 ---
 
-## 🚀 3. Three Commands to Verify (2 Minutes)
+## 3. Quick Verification (Under 2 Minutes)
 
-### Command 1: Verify Hackathon Rubric Compliance (100% Guaranteed)
+### Command 1: Validate agentskills.io Compliance
 ```bash
 python validate_submission.py
 ```
-*Checks agentskills.io YAML frontmatter, marketplace.json entrypoint, pure stdlib, read-only safety, and package size ceiling (< 0.5 MB vs 50 MB budget).*
+*Validates YAML frontmatter, marketplace manifest entrypoint, standard library usage, read-only safety, and package size budget.*
 
-### Command 2: Run Algorithmic & Generalization Test Suite
+### Command 2: Execute Generalization Test Suite
 ```bash
 python test_generalization.py
 ```
-*Runs 7 automated tests in 0.13s: SHA-256 proof hash, RAG tokenomics ($CFI$), multicurrency price detection, recursive JSON-LD unrolling, and schema adherence.*
+*Executes 7 unit tests in ~0.14s: SHA-256 verification, RAG tokenomics, multi-currency detection, recursive JSON-LD parsing, and schema conformity.*
 
-### Command 3: Launch Local Web Dashboard
+### Command 3: Terminal CLI Audit
 ```bash
-python server.py --port 8000
+python audit.py https://stripe.com
 ```
-*Open [http://127.0.0.1:8000](http://127.0.0.1:8000) to interact with the responsive dashboard, 6-engine simulator, and 1-click Git patch generator.*
+*Runs an audit directly from the terminal with ASCII scorecards and cryptographic proof.*
 
 ---
 
-## 📊 4. Hackathon Scoring Rubric Alignment Matrix
+## 4. Rubric Compliance Matrix
 
-| Rubric Criterion | Hackathon Requirement | AuraVision GEO™ Implementation | Score |
+| Rubric Criterion | Hackathon Requirement | AuraVision GEO Implementation | Status |
 | :--- | :--- | :--- | :---: |
-| **1. Standard Adherence** | Valid `SKILL.md` in every folder, YAML frontmatter, progressive disclosure. | 5 fully documented skill folders with `references/`, `scripts/`, and standardized schemas. | **100%** |
-| **2. Architecture & Entrypoint** | Root `marketplace.json` with designated entrypoint. | `audit-orchestrator` coordinates 4 worker skills in a single-pass parallel pipeline. | **100%** |
-| **3. Engineering Hygiene** | Pure Python standard library (no pip packages). | 100% pure stdlib (`urllib`, `re`, `html.parser`, `hashlib`, `xml.etree`, `gzip`). | **100%** |
-| **4. Safety & Sandbox** | Read-only sandbox, recommend-only. | Zero write operations on targets, zero authenticated routes, non-destructive patch generation. | **100%** |
-| **5. Package Size Ceiling** | Entire repository < 50 MB. | Entire package is **0.44 MB** (< 1% of allowable budget). | **100%** |
-| **6. Performance & Speed** | Full audit under 5 minutes. | In-memory single-pass pipeline audits live sites in **1.5 to 4.5 seconds**. | **100%** |
-| **7. Real-World Value** | Solves practical, high-impact enterprise problem. | Tackles the $100B shift from search to generative answer engines with actionable Git patches. | **100%** |
+| **1. Standard Adherence** | Valid `SKILL.md` in every folder, YAML frontmatter, progressive disclosure. | 5 fully documented skill folders with `references/`, `scripts/`, and standardized schemas. | **100% Compliant** |
+| **2. Architecture & Entrypoint** | Root `marketplace.json` with designated entrypoint. | `audit-orchestrator` coordinates 4 worker skills in a single-pass parallel pipeline. | **100% Compliant** |
+| **3. Engineering Hygiene** | Pure Python standard library (no pip packages). | 100% standard library (`urllib`, `re`, `html.parser`, `hashlib`, `xml.etree`, `gzip`). | **100% Compliant** |
+| **4. Safety & Sandbox** | Read-only sandbox, recommend-only. | Zero write operations on targets, zero authenticated routes, non-destructive patch generation. | **100% Compliant** |
+| **5. Package Size Ceiling** | Entire repository < 50 MB. | Package size is **1.38 MB** (< 3% of allowable budget). | **100% Compliant** |
+| **6. Performance & Speed** | Full audit under 5 minutes. | In-memory single-pass pipeline audits live sites in **0.35 to 2.2 seconds**. | **100% Compliant** |
+| **7. Generalization** | Works on unseen websites by construction. | Validated across 10 industry verticals and verified via unit tests. | **100% Compliant** |
 
 ---
 
