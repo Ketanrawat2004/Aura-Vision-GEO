@@ -30,6 +30,26 @@ Built strictly in accordance with the **[agentskills.io](https://agentskills.io)
 
 ---
 
+## Marketplace Summary: Skills & Entry Point Composition
+
+### What Each Skill Does
+| Skill ID | Role & Primary Function | Target Diagnostic Layer |
+|---|---|---|
+| **`audit-orchestrator`** | **Root Entrypoint**: Coordinates the audit lifecycle, executes single-pass HTTP fetching, distributes page sets to worker skills, deduplicates findings, normalizes severities, and emits machine-readable reports. | Full Pipeline Orchestration |
+| **`crawl-and-render-audit`** | Audits `robots.txt` permissions across 12 named AI crawlers (`GPTBot`, `ClaudeBot`, `PerplexityBot`), transparently decompresses `.xml.gz` sitemaps, and detects client-side SPA hydration rendering gaps. | Off-Site Discoverability (Layers 1–2) |
+| **`structured-fact-audit`** | Validates Schema.org JSON-LD and HTML5 Microdata graphs, infers required schemas from visible prose (e.g. pricing, FAQs, org), and flags locked facts. | Structured Fact Extraction (Layer 3) |
+| **`trust-and-corroboration-audit`** | Evaluates brand entity collision risks for common-noun brands, verifies authoritative Wikidata/Wikipedia `sameAs` links, and checks temporal claim freshness. | Cross-Web Trust & Entity Anchoring |
+| **`engagement-audit`** | Evaluates on-site visitor retention. Samples internal navigation links for HTTP 404/403 dead ends, validates mobile viewport configuration, checks semantic `<nav>` wrapping, and evaluates content scannability. | On-Site Visitor Retention |
+
+### How the Entry Point Composes Them
+1. **Input Normalization**: `audit-orchestrator` resolves the target domain into a canonical, scheme-qualified root URL.
+2. **Single-Pass Network Fetch**: Executes a concurrent HTTP fetch of the homepage and key routes once, creating an in-memory shared page set (URL, headers, raw HTML). No target site is fetched multiple times.
+3. **Parallel Dispatch**: Passes the shared page set across all 4 worker skills concurrently.
+4. **Deduplication & Severity Normalization**: Runs `aggregate_report.py` to merge overlapping findings using Jaccard token similarity ($\ge 0.60$) and re-derives severities mechanically via an immutable 3×3 `(Impact × Scope)` matrix.
+5. **Report & Proof Emission**: Generates `audit_report.json` (machine-readable matching `references/schema.md`) and `audit_report.md` (executive brief), sealed with an immutable SHA-256 cryptographic proof ledger.
+
+---
+
 ## Table of Contents
 1. [Background & Problem Statement](#1-background--problem-statement)
 2. [Architecture & Skill Composition](#2-architecture--skill-composition)
