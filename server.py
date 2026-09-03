@@ -66,6 +66,9 @@ def run_fast_audit(site_url, pages):
     ctx.verify_mode = ssl.CERT_NONE
 
     fetched_at_least_one = False
+    first_page_headers = {}
+    first_page_html = None
+
     for p_url in pages[:4]:
         try:
             req = urllib.request.Request(p_url, headers={
@@ -73,8 +76,9 @@ def run_fast_audit(site_url, pages):
                 "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
                 "Accept-Language": "en-US,en;q=0.5"
             })
-            with urllib.request.urlopen(req, timeout=12, context=ctx) as resp:
+            with urllib.request.urlopen(req, timeout=5, context=ctx) as resp:
                 raw_bytes = resp.read()
+                resp_headers = dict(resp.getheaders())
                 if raw_bytes.startswith(b"\x1f\x8b") or p_url.endswith(".gz"):
                     import gzip
                     try:
@@ -83,6 +87,10 @@ def run_fast_audit(site_url, pages):
                         pass
                 html = raw_bytes.decode("utf-8", errors="replace")
                 fetched_at_least_one = True
+
+                if first_page_html is None:
+                    first_page_headers = resp_headers
+                    first_page_html = html
 
                 # Render Gap analysis
                 r_f, r_o = c_render.check_page(p_url, html)
@@ -101,9 +109,12 @@ def run_fast_audit(site_url, pages):
         except Exception as e:
             print(f"[Audit] Page fetch warning for {p_url}: {e}", file=sys.stderr)
 
-    # 3. Freshness checks
+    # 3. Freshness checks (reuse pre-fetched HTML to avoid redundant HTTP round-trip)
     try:
-        f_fresh = c_fresh.check_page(site_url)
+        if first_page_html is not None:
+            f_fresh = c_fresh.check_page(site_url, headers=first_page_headers, html=first_page_html)
+        else:
+            f_fresh = c_fresh.check_page(site_url)
     except Exception as e:
         print(f"[Audit] Freshness check warning: {e}", file=sys.stderr)
 

@@ -675,15 +675,24 @@ body::before {
   box-shadow: var(--shadow-sm);
   margin-bottom: 1.75rem;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 1.5rem;
-  flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .verdict-banner {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 
 .verdict-text-block {
-  flex: 1;
-  min-width: 280px;
+  flex: 1 1 0%;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .verdict-badge {
@@ -704,7 +713,10 @@ body::before {
   font-size: 1.35rem;
   font-weight: 800;
   color: var(--text-main);
-  line-height: 1.3;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  word-wrap: break-word;
 }
 
 .verdict-summary {
@@ -712,6 +724,8 @@ body::before {
   color: var(--text-muted);
   margin-top: 0.35rem;
   line-height: 1.5;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .verdict-grade-box {
@@ -721,6 +735,8 @@ body::before {
   padding: 1rem 1.5rem;
   text-align: center;
   min-width: 130px;
+  flex-shrink: 0;
+  align-self: flex-start;
 }
 
 .verdict-grade-letter {
@@ -838,9 +854,10 @@ body::before {
 /* Overview Score Matrix */
 .overview-matrix {
   display: grid;
-  grid-template-columns: 340px 1fr;
+  grid-template-columns: minmax(260px, 340px) minmax(0, 1fr);
   gap: 1.5rem;
   margin-bottom: 2rem;
+  max-width: 100%;
 }
 
 @media (max-width: 980px) {
@@ -861,6 +878,9 @@ body::before {
   justify-content: center;
   text-align: center;
   box-shadow: var(--shadow-md);
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .score-visual-ring {
@@ -921,17 +941,25 @@ body::before {
   font-size: 1.15rem;
   font-weight: 800;
   margin-bottom: 0.4rem;
+  max-width: 100%;
+  word-break: break-word;
 }
 
 .audited-domain-chip {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 600;
   color: var(--text-muted);
   background: var(--bg-surface-elevated);
-  padding: 0.25rem 0.75rem;
+  padding: 0.3rem 0.75rem;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border-subtle);
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  box-sizing: border-box;
 }
 
 .audit-proof-pill {
@@ -947,6 +975,11 @@ body::before {
   padding: 0.2rem 0.65rem;
   border-radius: 9999px;
   margin-top: 0.5rem;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  box-sizing: border-box;
 }
 
 /* Breakdown Pillars & Counters */

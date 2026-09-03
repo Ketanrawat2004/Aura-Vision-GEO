@@ -348,8 +348,17 @@ document.addEventListener('DOMContentLoaded', () => {
           if (prev.icon) prev.icon.innerHTML = doneIndicator;
         }
         currentStep++;
+      } else {
+        // Mark Step 5 as completed and show final synthesis & ledger calculation
+        const last = steps[steps.length - 1];
+        const lastEl = document.getElementById(last.id);
+        if (lastEl) lastEl.className = 'stage-pill done';
+        if (last && last.icon) last.icon.innerHTML = doneIndicator;
+
+        processingSubMsg.textContent = 'Aggregating Findings & Cryptographic Proof...';
+        liveTickerText.textContent = 'Computing SHA-256 tamper-evident ledger and synthesizing 1-click patches...';
       }
-    }, 400);
+    }, 500);
 
     try {
       const response = await fetch('/api/audit', {
@@ -395,11 +404,31 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function formatDisplayUrl(url, maxLen = 65) {
+    if (!url) return '';
+    try {
+      const parsed = new URL(url);
+      if (parsed.search && url.length > maxLen) {
+        const pathPart = `${parsed.origin}${parsed.pathname}`;
+        if (pathPart.length > maxLen) {
+          return pathPart.substring(0, maxLen - 3) + '...';
+        }
+        return `${pathPart}...`;
+      }
+    } catch (e) {}
+    if (url.length > maxLen) {
+      return url.substring(0, maxLen - 3) + '...';
+    }
+    return url;
+  }
+
   function renderDashboard(report) {
     currentReport = report;
     resultsSection.style.display = 'block';
 
-    auditedSiteLabel.textContent = report.site;
+    const displayUrl = formatDisplayUrl(report.site, 65);
+    auditedSiteLabel.textContent = displayUrl;
+    auditedSiteLabel.title = report.site;
     const summary = report.summary || { total_findings: 0, critical: 0, high: 0, medium: 0, low: 0 };
 
     countCrit.textContent = summary.critical || 0;
@@ -485,10 +514,12 @@ document.addEventListener('DOMContentLoaded', () => {
     verdictGrade.style.color = colorHex;
 
     if (isUnreachable) {
-      verdictHeadline.textContent = `${report.site} is Offline / Unreachable (Grade F · 0/100)`;
+      verdictHeadline.textContent = `${displayUrl} is Offline / Unreachable (Grade F · 0/100)`;
+      verdictHeadline.title = report.site;
       verdictSummary.textContent = `Unable to connect to host. Domain resolution failed or target server is refusing connections. All AI crawlers and human visitors are blocked.`;
     } else {
-      verdictHeadline.textContent = `${report.site} receives Grade ${grade} (${score}/100)`;
+      verdictHeadline.textContent = `${displayUrl} receives Grade ${grade} (${score}/100)`;
+      verdictHeadline.title = report.site;
       verdictSummary.textContent = `${summary.total_findings} technical finding(s) detected across 5 diagnostic pillars. ${summary.critical} critical, ${summary.high} high, ${summary.medium} medium, and ${summary.low} low severity issues.`;
     }
 

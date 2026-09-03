@@ -21,7 +21,7 @@ from datetime import datetime, timezone
 from urllib.parse import urljoin, urlparse
 
 USER_AGENT = "Aura-Vision-GEO/1.0 (+read-only site audit; respects robots.txt)"
-TIMEOUT = 10
+TIMEOUT = 4
 
 # Known AI-agent / answer-engine fetcher tokens worth checking explicitly.
 # '*' (the default group) is always checked too.

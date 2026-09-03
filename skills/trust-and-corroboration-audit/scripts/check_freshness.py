@@ -110,13 +110,16 @@ def find_visible_dates(html, text):
     return found
 
 
-def check_page(url):
+def check_page(url, headers=None, html=None):
     findings = []
-    try:
-        headers, html = fetch_with_headers(url)
-    except Exception as e:
-        print(f"warning: could not fetch {url}: {e}", file=sys.stderr)
-        return findings
+    if html is None:
+        try:
+            headers, html = fetch_with_headers(url)
+        except Exception as e:
+            print(f"warning: could not fetch {url}: {e}", file=sys.stderr)
+            return findings
+    else:
+        headers = headers or {}
 
     text = re.sub(r"<[^>]+>", " ", html)
     now = datetime.now(timezone.utc)
