@@ -1,55 +1,53 @@
-# 🏆 AuraVision GEO™ — Hackathon Pitch Deck & Defense Masterclass
+# AuraVision GEO — Presentation Deck & Technical Q&A Reference
 **Adobe University Hackathon 2026**  
 **Category:** Autonomous AI Agents & Generative Engine Optimization (GEO)  
-**Entrypoint Skill:** `audit-orchestrator` (Standard `agentskills.io` Marketplace)  
-**Live Dashboard:** `http://127.0.0.1:8000/`  
-**GitHub Repository:** [https://github.com/Ketanrawat2004/Aura-Vision-GEO](https://github.com/Ketanrawat2004/Aura-Vision-GEO)
+**Entrypoint Skill:** `audit-orchestrator` (`agentskills.io` Specification)  
+**Repository:** [https://github.com/Ketanrawat2004/Aura-Vision-GEO](https://github.com/Ketanrawat2004/Aura-Vision-GEO)
 
 ---
 
-## 📽️ 8-Slide Presentation Deck
+## 8-Slide Presentation Summary
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────────────┐
 │                                       SLIDE 1                                           │
-│                 AuraVision GEO™: The AI Discoverability Platform                        │
-│          "Because If ChatGPT Can't Read You, You Don't Exist in 2026."                 │
+│                 AuraVision GEO: Technical Discoverability & Retention                   │
+│         Diagnostic tooling for generative search indexing and fact extraction           │
 ├─────────────────────────────────────────────────────────────────────────────────────────┤
-│ • What: Industrial-grade Generative Engine Optimization (GEO) audit & retention suite.  │
+│ • Overview: Generative Engine Optimization (GEO) audit and remediation platform.        │
 │ • Standard: 100% compliant with agentskills.io (5 focused worker skills + orchestrator).│
-│ • Tech: Pure Python 3.8+ Standard Library, Zero Pip Dependencies, Read-Only & Safe.     │
-│ • Speed: 8-Worker concurrent fetching (< 350ms) + sub-millisecond LRU cache (0.0008s). │
+│ • Architecture: Python 3.8+ Standard Library, zero pip dependencies, read-only.        │
+│ • Performance: Parallel multi-worker probing (< 350ms) + in-memory LRU cache (< 1ms).   │
 └─────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────────────┐
 │                                       SLIDE 2                                           │
-│                 The Problem: The $100 Billion AI Invisibility Crisis                    │
+│                 The Problem: Answer-Engine Retrieval Failures                           │
 ├─────────────────────────────────────────────────────────────────────────────────────────┤
-│ 1. Traditional SEO Is Dying:                                                            │
-│    • Users don't click blue links; they ask ChatGPT, Perplexity, Claude, and Gemini.    │
-│ 2. The 3 Silent Killers of AI Traffic:                                                  │
-│    • Crawler Blocking: 45% of enterprise sites accidentally disallow AI bots in         │
-│      robots.txt or fail to declare explicit token permissions.                          │
-│    • SPA Hydration Black Holes: React/Next.js client-side shells deliver empty <div id> │
-│      payloads — AI crawlers parse 0 text without expensive JS execution.                │
-│    • Schema & Entity Drift: Pricing and FAQs locked in tables without JSON-LD schemas   │
-│      force LLMs to guess, hallucinating wrong pricing and sending customers away.       │
+│ 1. Search Behavior Shift:                                                               │
+│    • Queries increasingly resolve directly within LLM syntheses without site visits.    │
+│ 2. Primary Failure Modes:                                                               │
+│    • Crawler Blocking: Critical pages or assets disallowed in robots.txt for AI agents. │
+│    • SPA Hydration Gaps: Client-side shells delivering empty HTML payloads to non-JS    │
+│      static fetchers.                                                                   │
+│    • Schema Absence: Data presented in unformatted tables without JSON-LD microdata,   │
+│      forcing models to approximate facts via free-text heuristics.                      │
 └─────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────────────┐
 │                                       SLIDE 3                                           │
-│         The Solution: agentskills.io Composable 5-Skill Architecture                    │
+│         Architecture: agentskills.io Composable 5-Skill Design                          │
 ├─────────────────────────────────────────────────────────────────────────────────────────┤
 │                     [ Target URL: e.g. stripe.com ]                                     │
 │                                   │                                                     │
 │                  ┌────────────────┴────────────────┐                                    │
 │                  ▼                                 ▼                                    │
-│       Single-Pass HTTP Fetch          In-Memory SHA-256 LRU Cache                       │
-│        (Concurrent ThreadPool)         (Sub-millisecond Retrieval)                      │
+│       Single-Pass Network Fetch          In-Memory SHA-256 LRU Cache                    │
+│        (Concurrent ThreadPool)             (Sub-Millisecond Lookup)                     │
 │                  │                                 │                                    │
 │                  └────────────────┬────────────────┘                                    │
 │                                   ▼                                                     │
@@ -58,136 +56,114 @@
 │             ▼                     ▼                     ▼                               │
 │   crawl-and-render-audit  structured-fact-audit  trust-and-corroboration               │
 │    • 12 AI bot tokens      • JSON-LD + Microdata  • Entity disambiguation               │
-│    • robots.txt matrix     • Price pattern infer  • Stale temporal claims               │
+│    • robots.txt matrix     • Price pattern infer  • Temporal claim freshness            │
 │    • .xml.gz sitemaps      • Locked fact detect   • SameAs Wikidata links               │
 │             │                     │                     │                               │
 │             └─────────────────────┼─────────────────────┘                               │
 │                                   ▼                                                     │
 │                            engagement-audit                                             │
-│                             • 404 dead link sampling & scannability                     │
-│                             • Mobile viewport & semantic <nav> wrapping                 │
+│                             • Dead link sampling (404/403 detection)                    │
+│                             • Mobile viewport & semantic nav structure                  │
 │                                   ▼                                                     │
 │                           aggregate_report.py                                           │
-│                            • Jaccard Deduplication (≥ 0.60)                            │
-│                            • 3×3 Mathematical Severity Matrix                           │
-│                            • SHA-256 Cryptographic Ledger Hashing                       │
+│                            • Jaccard Deduplication (threshold >= 0.60)                  │
+│                            • 3x3 Mathematical Severity Derivation Matrix                │
+│                            • Cryptographic SHA-256 Ledger Hash                          │
 └─────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────────────┐
 │                                       SLIDE 4                                           │
-│            1000x Concurrency Engine: Sub-Millisecond Speedup                            │
+│            Performance: Concurrent Probing & Deterministic Caching                      │
 ├─────────────────────────────────────────────────────────────────────────────────────────┤
-│ • Parallel Probing: Simultaneous multi-worker HTTP burst across robots.txt, HTML,       │
-│   sitemaps, and /llms.txt drops cold audit latency from > 12s down to < 350ms.          │
-│ • Deterministic LRU Cache: SHA-256 keyed cache serves cached audits in 0.0008s          │
-│   (869x to 1,200x speedup factor!).                                                     │
-│ • Low-Resource Guarantee: Pure Python 3.8+ socket pooling with 0 external packages.     │
+│ • Parallel Network Probing: ThreadPoolExecutor bursts across robots.txt, HTML markup,   │
+│   sitemaps, and /llms.txt concurrently, reducing cold audit latency below 350ms.        │
+│ • Deterministic Cache: SHA-256 keyed LRU cache resolves repeated requests in 0.0008s.  │
+│ • Dependency-Free Footprint: Standard library implementation with zero external C-libs. │
 └─────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────────────┐
 │                                       SLIDE 5                                           │
-│        Pre-Trained 1,000-Website Global Enterprise Intelligence Model                   │
+│        Empirical 1,000-Website Enterprise Benchmark Model                               │
 ├─────────────────────────────────────────────────────────────────────────────────────────┤
-│ • Grounded Dataset: 1,000 authentic, verified global web properties across 10 verticals │
+│ • Verified Corpus: 1,000 production domains across 10 global industry verticals         │
 │   (SaaS, E-Commerce, DevTools, FinTech, Media, EdTech, Healthcare, AI Labs, Travel,    │
-│   Enterprise Tech). Zero synthetic placeholder nodes.                                   │
-│ • Empirical Percentile Ranking: Measures target against all 1,000 domains across         │
-│   Crawlability, RAG Signal-to-Noise Ratio (SNR), Chunk Fragmentation Index (CFI),       │
-│   and Schema density.                                                                   │
-│ • Calibrated Cosine k-NN Peer Matching: Weighted multi-attribute feature distance       │
-│   identifies top 3 nearest architectural enterprise peers with realistic variance.      │
+│   Hardware). Verified real organizations with zero synthetic placeholder nodes.         │
+│ • Calibrated Distribution: Statistical Gaussian distribution (mean 66.4/100).           │
+│ • Weighted Distance Matching: Identifies closest architectural enterprise peers based   │
+│   on measured feature vectors (GEO score, RAG SNR, CFI, Schema density).                │
 └─────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────────────┐
 │                                       SLIDE 6                                           │
-│           AI Query Simulator: Before vs. After Grounding Proof                          │
+│           AI Retrieval Simulator: Before vs. After Grounding Proof                      │
 ├─────────────────────────────────────────────────────────────────────────────────────────┤
 │ • 6-Engine Readiness Matrix: Live diagnostic badges for ChatGPT, Perplexity, Claude,    │
 │   Gemini, Apple Intelligence, and DeepSeek.                                             │
-│ • Interactive Side-by-Side Playground:                                                  │
-│   - Unpatched State: Simulates hallucinated answers, missing pricing, and broken context│
-│   - Patched State: Demonstrates high-confidence, verified direct citations with         │
-│     grounded JSON-LD facts and clean /llms.txt entrypoints.                             │
+│ • Comparative Simulation: Demonstrates exact retrieval failure modes (heuristic parsing │
+│   uncertainty vs. structured JSON-LD direct citation grounding).                        │
 └─────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────────────┐
 │                                       SLIDE 7                                           │
-│          Autonomous 1-Click Self-Healing Toolkit & Git Patch Engine                     │
+│          Autonomous Git Patch Remediation & Protocol Generation                         │
 ├─────────────────────────────────────────────────────────────────────────────────────────┤
-│ • Machine-Readable Manifests: Instant generation of /llms.txt specification.            │
-│ • Structured Data Generator: Produces Schema.org JSON-LD (Product, FAQPage, Org sameAs).│
-│ • robots.txt Policy Generator: Synthesizes explicit permissions for 12 named AI agents. │
-│ • Autonomous Git Pull Request Diff: 1-click unified git patch (`auravision-fix.patch`)   │
-│   ready to apply via `git apply` with 0 manual coding required.                         │
+│ • Machine-Readable Manifests: Instant synthesis of /llms.txt specification.             │
+│ • Schema Generator: Generates Schema.org JSON-LD (Product, FAQPage, Organization).      │
+│ • robots.txt Generator: Generates explicit permission directives for named AI crawlers. │
+│ • Unified Git Diff: 1-click git patch (auravision-fix.patch) applied via git apply.     │
 └─────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────────────┐
 │                                       SLIDE 8                                           │
-│            Enterprise Impact, Commercial Viability & Future Vision                      │
+│            Implementation Feasibility & Architecture Integration                        │
 ├─────────────────────────────────────────────────────────────────────────────────────────┤
-│ • Enterprise Value: Solves customer acquisition drop-offs for SaaS, E-Commerce & Media.  │
-│ • Integration: Easily drops into CI/CD pipelines (GitHub Actions) as a blocking check.  │
-│ • Read-Only Safety: Zero risk of data leakage, credential theft, or site corruption.    │
-│ • The Verdict: AuraVision GEO™ transforms websites from invisible black boxes into     │
-│   authoritative, cited knowledge sources across the entire generative AI ecosystem.    │
+│ • Continuous Integration: Drops cleanly into CI/CD pipelines as a blocking PR check.    │
+│ • Read-Only Safety: Zero risk of site mutation, credential storage, or data leakage.    │
+│ • Summary: Transforms websites into structured, verifiable sources for answer engines.  │
 └─────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 🎯 Top 10 Judges' Questions & Winning Rebuttals
+## Technical Q&A Reference
 
-### Q1: "Why do we need GEO when we already have traditional SEO tools like Semrush and Ahrefs?"
-> **Rebuttal:**  
-> "Traditional SEO optimizes for keyword density and backlink pagerank for Google's 10 blue links. Generative AI engines (SearchGPT, Claude, Perplexity) don't read links—they use RAG (Retrieval-Augmented Generation). If your site has high chunk fragmentation ($CFI > 0.40$), low signal-to-noise ratio ($SNR < 0.60$), or lacks Schema.org JSON-LD microdata, the LLM literally cannot extract facts and hallucinates your competitor's information instead. AuraVision GEO™ is engineered specifically for AI tokenomics and vector retrieval, which SEO tools completely ignore."
+### 1. Why is GEO necessary in addition to traditional SEO?
+Traditional SEO optimizes for keyword density and backlink rank within Google's inverted index. Generative answer engines (SearchGPT, Claude, Perplexity) operate via Retrieval-Augmented Generation (RAG). If a website exhibits high chunk fragmentation ($CFI > 0.40$), low Signal-to-Noise Ratio ($SNR < 0.15$), or lacks Schema.org JSON-LD microdata, the retrieval model cannot reliably extract facts and defaults to free-text heuristic extraction. AuraVision GEO diagnoses these retrieval tokenomics directly.
 
-### Q2: "How do you guarantee that this audit engine won't break production websites?"
-> **Rebuttal:**  
-> "AuraVision GEO adheres strictly to the **recommend-only, read-only** constraint of `agentskills.io`. It only performs single-pass HTTP `GET` requests mimicking standard web user agents. It never submits forms, never alters databases, and never requires API credentials. Furthermore, all proposed remediations are delivered as reviewable `.patch` diffs and `/llms.txt` templates that engineering teams inspect before deploying."
+### 2. How is read-only safety guaranteed?
+AuraVision GEO adheres strictly to the recommend-only, read-only requirement of `agentskills.io`. The engine issues only standard HTTP `GET` requests mimicking browser user agents. It never executes write operations, never mutates databases, and requires no API keys or credentials. All proposed remediations are output as inspectable `.patch` diff files.
 
-### Q3: "Is your 1,000-website benchmark model using fake synthetic numbers or real data?"
-> **Rebuttal:**  
-> "It is 100% grounded in verified production architectures. Our corpus contains 1,000 real global enterprise domains (Stripe, GitHub, Amazon, Vercel, Mayo Clinic, MIT, OpenAI) across 10 verticals. The empirical percentiles and $k$-NN peer clustering use a calibrated multi-attribute feature distance formula across live measured parameters: GEO Score, RAG SNR, Chunk Fragmentation, and Schema node density. Anyone can inspect `skills/audit-orchestrator/data/enterprise_corpus_1000.json` to verify every single domain."
+### 3. What data backs the 1,000-website benchmark model?
+The benchmark corpus (`skills/audit-orchestrator/data/enterprise_corpus_1000.json`) contains 1,000 real-world production domains (Stripe, GitHub, Amazon, Vercel, Mayo Clinic, MIT, OpenAI, etc.) distributed across 10 industry verticals (100 domains per vertical). Empirical percentiles and peer matching are calculated using weighted attribute distance across measured parameters (GEO Score, RAG SNR, Chunk Fragmentation Index, and Schema Node Density).
 
-### Q4: "Why did you choose zero external pip dependencies and pure standard library?"
-> **Rebuttal:**  
-> "In enterprise security audits, introducing third-party pip dependencies creates supply-chain vulnerabilities, license conflicts, and version bitrot. By writing the HTML tokenizer, Microdata unroller, robots.txt parser, and multi-worker pool using pure Python 3.8+ standard library, AuraVision GEO™ runs anywhere—from an air-gapped server to an ephemeral AWS Lambda container—with zero installation friction and a total footprint of under 3.5 MB."
+### 4. Why was zero external pip dependencies chosen?
+In enterprise security auditing and CI/CD environments, third-party pip dependencies introduce supply-chain vulnerabilities, license conflicts, and version bitrot. By implementing HTML tokenization, Microdata extraction, robots.txt parsing, and thread pooling using Python 3.8+ standard library exclusively, AuraVision GEO executes in any standard Python environment with zero installation overhead and a total package size under 3.6 MB.
 
-### Q5: "How does your 1000x caching engine maintain freshness if a website updates?"
-> **Rebuttal:**  
-> "Our `AuditCache` uses a dual-key mechanism combining the canonical domain URL with a SHA-256 fingerprint and a strict 15-minute Time-To-Live (TTL). If a user forces a re-audit or after the TTL expires, the engine executes an 8-worker parallel burst across `robots.txt`, HTML pages, and sitemaps in under 350ms, ensuring both blazing sub-millisecond retrieval and continuous freshness."
+### 5. How does in-memory caching maintain fresh data?
+The caching layer (`AuditCache`) combines the canonical domain URL with a SHA-256 fingerprint and a strict 15-minute Time-To-Live (TTL). Repeated audits within the TTL resolve in under 1 millisecond. When a cache misses or expires, the engine executes a parallel multi-worker burst in under 350ms.
 
-### Q6: "What is the Signal-to-Noise Ratio (SNR) and Chunk Fragmentation Index (CFI)?"
-> **Rebuttal:**  
-> "LLMs have limited context windows and retrieval chunk limits (typically 512–1,024 tokens).  
-> - **Signal-to-Noise Ratio ($SNR$)**: Measures the proportion of meaningful semantic text versus boilerplate (navbars, tracking scripts, cookie disclaimers).  
-> - **Chunk Fragmentation Index ($CFI$)**: Measures how frequently semantic sections are interrupted by DOM layout wrappers. A low $CFI$ ($< 0.20$) guarantees that when an LLM retrieves a chunk, the entire factual answer is contiguous and coherent."
+### 6. How are Signal-to-Noise Ratio (SNR) and Chunk Fragmentation Index (CFI) defined?
+- **Signal-to-Noise Ratio ($SNR$)**: The proportion of meaningful factual text bytes relative to total raw markup bytes.
+- **Chunk Fragmentation Index ($CFI$)**: Quantifies how many standard 512-token context windows (2,048 UTF-8 bytes) are occupied by layout markup before primary text content is reached. A lower CFI indicates cleaner, contiguous semantic content.
 
-### Q7: "How does your AI Simulator predict before vs. after answers without spending OpenAI API credits?"
-> **Rebuttal:**  
-> "The AI Simulator uses deterministic retrieval synthesis based on your site's actual audited findings. If `GPTBot` is blocked in robots.txt or your pricing is trapped in unparsed HTML tables without schema, it demonstrates the exact failure mode (refusal or free-text hallucination). When the patch is applied, it demonstrates how structured JSON-LD allows answer engines to cite exact pricing and authoritative links. It demonstrates causal proof with zero API cost and zero latency."
+### 7. How does the AI Simulator operate without external API credits?
+The simulator uses deterministic rule synthesis based on the site's measured audit findings. When crawler tokens or structured data are missing, it demonstrates the corresponding failure mode (parsing uncertainty or missing citations). When structured data is present, it shows direct fact grounding. This provides immediate, repeatable demonstration without third-party API dependencies or cost.
 
-### Q8: "How does the autonomous Git Patch engine work?"
-> **Rebuttal:**  
-> "Our engine analyzes the specific audit findings and generates a unified git diff patch file. For example, if `GPTBot` or `ClaudeBot` are missing, it generates the exact lines to add to `robots.txt`. If Schema is missing, it synthesizes a compliant JSON-LD `@graph` with Organization and Product schemas. The developer simply runs `git apply auravision-fix.patch`, creating a 1-click self-healing feedback loop."
+### 8. How does the autonomous Git patch generator function?
+The engine correlates specific findings against code templates to produce a unified git diff (`auravision-fix.patch`). For instance, missing crawler tokens generate targeted `robots.txt` additions, while missing structured data produces compliant Schema.org JSON-LD snippets. The developer can inspect and apply the patch via standard `git apply`.
 
-### Q9: "How does the platform adhere to the agentskills.io standard?"
-> **Rebuttal:**  
-> "Every single one of our 5 skills contains a valid `SKILL.md` with standard YAML frontmatter (`name`, `description`, `parameters`), clean deterministic scripts in `scripts/`, and an `audit-orchestrator` skill that coordinates the execution graph. It passed all checks in `validate_submission.py` with 100% compliance."
+### 9. How is agentskills.io compliance validated?
+All 5 skills include valid `SKILL.md` instruction files with YAML frontmatter (`name`, `description`, `parameters`), clean deterministic scripts in `scripts/`, and an `audit-orchestrator` root skill. Compliance is mechanically verified by `validate_submission.py`.
 
-### Q10: "What is your commercial go-to-market strategy?"
-> **Rebuttal:**  
-> "AuraVision GEO™ has a clear three-tier enterprise SaaS monetization model:  
-> 1. **Self-Serve Developer CLI**: Free open-source local diagnostic tool.  
-> 2. **CI/CD Quality Gate**: Paid GitHub Actions plugin that fails pull requests if a frontend deployment degrades AI discoverability or blocks AI crawlers.  
-> 3. **Enterprise Intelligence Suite**: Continuous monitoring, weekly AI citation drift tracking, and automated competitive peer benchmarking for Fortune 500 brands."
+### 10. How can this integrate into production engineering workflows?
+AuraVision GEO can be run as a CLI check in GitHub Actions or GitLab CI. If a pull request introduces changes that block AI crawlers in `robots.txt`, drop JSON-LD schemas, or introduce client-side hydration gaps, the audit can exit with a non-zero code to prevent deployment regressions.
