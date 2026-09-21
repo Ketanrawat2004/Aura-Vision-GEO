@@ -72,9 +72,19 @@ When an answer engine processes a prompt, it does not browse visually like a hum
 
 AuraVision GEO decomposes the audit problem into **5 focused, single-concern skills** coordinated by a designated entrypoint (`audit-orchestrator`), declared in `marketplace.json`:
 
-<p align="center">
-  <img src="docs/images/06-architecture-modal.png" alt="AuraVision GEO Architecture & 5-Skill Specification" width="920"/>
-</p>
+```
+                  ┌─────────────────────────────────────────┐
+                  │   audit-orchestrator (Entrypoint)       │
+                  │   Single-Pass BFS Crawl & Aggregation   │
+                  └────────────────────┬────────────────────┘
+                                       │ (Shared In-Memory Dataset)
+         ┌──────────────────┬──────────┴──────────┬──────────────────┐
+         ▼                  ▼                     ▼                  ▼
+┌──────────────────┐ ┌───────────────┐ ┌───────────────────┐ ┌──────────────┐
+│ crawl-and-render │ │structured-fact│ │trust-corroboration│ │  engagement  │
+│  Robots/SPA Gap  │ │JSON-LD/Schema │ │ E-E-A-T & Dates   │ │ UX/Retention │
+└──────────────────┘ └───────────────┘ └───────────────────┘ └──────────────┘
+```
 
 | Skill ID | Directory | Role & Target Diagnostic Layer |
 |---|---|---|
@@ -184,7 +194,7 @@ Target URL
 
 - Target web pages are fetched **exactly once** by the orchestrator.
 - Worker skills analyze the shared dataset directly without making independent network or browser requests.
-- Headless rendering (if Playwright is available) is executed strictly during the orchestrator's ingestion phase and stored in `rendered_text`.
+- Ingestion is powered by a high-throughput, pure Python standard library BFS crawler (zero external browser or pip dependencies).
 
 ---
 
