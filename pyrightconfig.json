@@ -1,0 +1,10 @@
+{
+  "typeCheckingMode": "off",
+  "extraPaths": [
+    "skills/audit-orchestrator/scripts",
+    "skills/crawl-and-render-audit/scripts",
+    "skills/structured-fact-audit/scripts",
+    "skills/trust-and-corroboration-audit/scripts",
+    "skills/engagement-audit/scripts"
+  ]
+}

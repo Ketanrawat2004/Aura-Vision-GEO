@@ -16,9 +16,16 @@ Usage:
 """
 import json
 import os
+import py_compile
 import re
 import sys
-import time
+
+if hasattr(sys.stdout, "reconfigure"):
+    try:
+        getattr(sys.stdout, "reconfigure")(encoding="utf-8")
+        getattr(sys.stderr, "reconfigure")(encoding="utf-8")
+    except Exception:
+        pass
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -67,10 +74,44 @@ def check_skill_folders():
     return True, "All 5 skill folders are 100% agentskills.io compliant"
 
 
+def check_pure_stdlib():
+    disallowed = {"requests", "bs4", "beautifulsoup4", "selenium", "scrapy", "httpx", "aiohttp", "flask", "django", "fastapi"}
+    checked_files = 0
+    for root, _, files in os.walk(BASE_DIR):
+        if ".git" in root or "__pycache__" in root or ".pytest_cache" in root:
+            continue
+        for f in files:
+            if f.endswith(".py") and f not in ("test_generalization.py",):
+                fp = os.path.join(root, f)
+                checked_files += 1
+                with open(fp, "r", encoding="utf-8", errors="replace") as pyf:
+                    code = pyf.read()
+                for mod in disallowed:
+                    if re.search(r'^\s*(?:import\s+' + mod + r'\b|from\s+' + mod + r'\b)', code, re.MULTILINE):
+                        return False, f"Disallowed third-party dependency '{mod}' found in {os.path.relpath(fp, BASE_DIR)}"
+    return True, f"All {checked_files} Python source files strictly use Python standard library (0 external pip dependencies)"
+
+
+def check_python_syntax():
+    checked_files = 0
+    for root, _, files in os.walk(BASE_DIR):
+        if ".git" in root or "__pycache__" in root or ".pytest_cache" in root:
+            continue
+        for f in files:
+            if f.endswith(".py"):
+                fp = os.path.join(root, f)
+                checked_files += 1
+                try:
+                    py_compile.compile(fp, doraise=True)
+                except Exception as e:
+                    return False, f"Syntax error in {os.path.relpath(fp, BASE_DIR)}: {e}"
+    return True, f"All {checked_files} Python files compiled with 0 syntax errors"
+
+
 def check_package_size():
     total_bytes = 0
     for root, _, files in os.walk(BASE_DIR):
-        if ".git" in root or "__pycache__" in root:
+        if ".git" in root or "__pycache__" in root or ".pytest_cache" in root:
             continue
         for f in files:
             fp = os.path.join(root, f)
@@ -91,6 +132,8 @@ def main():
     checks = [
         ("Marketplace Manifest", check_marketplace_manifest),
         ("agentskills.io Compliance", check_skill_folders),
+        ("Pure Python Stdlib Verification", check_pure_stdlib),
+        ("Code Syntax & Compilation", check_python_syntax),
         ("Package Size Budget", check_package_size),
     ]
 

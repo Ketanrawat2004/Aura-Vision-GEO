@@ -19,8 +19,11 @@
       "suggested_action": {
         "summary": "Remove or narrow the Disallow rules for these agents unless the block is intentional (e.g. paywalled/private content).",
         "priority": "high",
-        "mechanism": "A blocked crawler can't fetch the page at all \u2014 this isn't a ranking penalty, the content is architecturally invisible to that system regardless of quality."
-      }
+        "mechanism": "A blocked crawler can't fetch the page at all — this isn't a ranking penalty, the content is architecturally invisible to that system regardless of quality."
+      },
+      "affected_urls": [
+        "http://127.0.0.1:8931/"
+      ]
     },
     {
       "id": "F-002",
@@ -32,7 +35,10 @@
       "suggested_action": {
         "summary": "Regenerate the sitemap so lastmod reflects real content changes.",
         "priority": "medium"
-      }
+      },
+      "affected_urls": [
+        "http://127.0.0.1:8931/sitemap.xml"
+      ]
     },
     {
       "id": "F-003",
@@ -44,7 +50,10 @@
       "suggested_action": {
         "summary": "Remove noindex from pages meant to be publicly discoverable.",
         "priority": "high"
-      }
+      },
+      "affected_urls": [
+        "http://127.0.0.1:8931/pricing"
+      ]
     },
     {
       "id": "F-004",
@@ -56,8 +65,11 @@
       "suggested_action": {
         "summary": "Server-render or prerender this route so key content ships in the initial HTML response.",
         "priority": "high",
-        "mechanism": "Fetchers that don't execute JavaScript \u2014 most AI-answer-engine crawlers included \u2014 only ever see the raw response. If the facts only exist after render, they don't exist for those systems."
-      }
+        "mechanism": "Fetchers that don't execute JavaScript — most AI-answer-engine crawlers included — only ever see the raw response. If the facts only exist after render, they don't exist for those systems."
+      },
+      "affected_urls": [
+        "http://127.0.0.1:8931/app/"
+      ]
     },
     {
       "id": "F-005",
@@ -69,7 +81,11 @@
       "suggested_action": {
         "summary": "Wrap primary navigation in a <nav> element with descriptive link text.",
         "priority": "medium"
-      }
+      },
+      "affected_urls": [
+        "http://127.0.0.1:8931/",
+        "http://127.0.0.1:8931/product/"
+      ]
     },
     {
       "id": "F-006",
@@ -81,7 +97,11 @@
       "suggested_action": {
         "summary": "Add <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">.",
         "priority": "medium"
-      }
+      },
+      "affected_urls": [
+        "http://127.0.0.1:8931/",
+        "http://127.0.0.1:8931/product/"
+      ]
     },
     {
       "id": "F-007",
@@ -93,7 +113,11 @@
       "suggested_action": {
         "summary": "Add a visible link to a contact or about page from primary navigation.",
         "priority": "medium"
-      }
+      },
+      "affected_urls": [
+        "http://127.0.0.1:8931/",
+        "http://127.0.0.1:8931/product/"
+      ]
     },
     {
       "id": "F-008",
@@ -106,7 +130,10 @@
         "summary": "Add FAQPage JSON-LD matching what the page already says in prose.",
         "priority": "high",
         "mechanism": "Structured data is what an assistant quotes from directly; prose alone requires the extractor to correctly parse free text, which is far less reliable."
-      }
+      },
+      "affected_urls": [
+        "http://127.0.0.1:8931/product/"
+      ]
     },
     {
       "id": "F-009",
@@ -118,7 +145,10 @@
       "suggested_action": {
         "summary": "Fill in the missing required Organization properties.",
         "priority": "medium"
-      }
+      },
+      "affected_urls": [
+        "http://127.0.0.1:8931/"
+      ]
     },
     {
       "id": "F-010",
@@ -130,7 +160,10 @@
       "suggested_action": {
         "summary": "Add descriptive alt text (or a plain-text equivalent nearby) restating the key facts the image carries.",
         "priority": "medium"
-      }
+      },
+      "affected_urls": [
+        "http://127.0.0.1:8931/pricing"
+      ]
     },
     {
       "id": "F-011",
@@ -143,7 +176,10 @@
         "summary": "Mirror the PDF's key facts as plain HTML text on the page itself; keep the PDF as a download option, not the only copy.",
         "priority": "high",
         "mechanism": "Most fetchers extract page text directly; a fact that requires opening and parsing a separate PDF is far less likely to be read and used at all."
-      }
+      },
+      "affected_urls": [
+        "http://127.0.0.1:8931/pricing"
+      ]
     },
     {
       "id": "F-012",
@@ -156,7 +192,10 @@
         "summary": "Either refresh the content and its date, or add an explicit 'as of <date>' qualifier so the claim doesn't read as current when it may not be.",
         "priority": "medium",
         "mechanism": "Assistants weight recency when deciding what to trust and repeat; an undated evergreen claim next to old date signals reads as unreliable once cross-checked."
-      }
+      },
+      "affected_urls": [
+        "http://127.0.0.1:8931/about/"
+      ]
     },
     {
       "id": "F-013",
@@ -168,7 +207,10 @@
       "suggested_action": {
         "summary": "Fix or remove these internal links.",
         "priority": "medium"
-      }
+      },
+      "affected_urls": [
+        "http://127.0.0.1:8931/pricing"
+      ]
     },
     {
       "id": "F-014",
@@ -180,7 +222,10 @@
       "suggested_action": {
         "summary": "Reduce to a single <h1>; demote the rest to <h2>+.",
         "priority": "low"
-      }
+      },
+      "affected_urls": [
+        "http://127.0.0.1:8931/"
+      ]
     }
   ],
   "opportunities": []

@@ -39,6 +39,8 @@ Audited at 2026-09-02T05:17:44Z
 
 **Evidence:** No <nav> tag in http://127.0.0.1:8931/.; No <nav> tag in http://127.0.0.1:8931/product/.
 
+**Affected Routes (2):** `http://127.0.0.1:8931/`, `http://127.0.0.1:8931/product/`
+
 **Fix (medium priority):** Wrap primary navigation in a <nav> element with descriptive link text.
 
 ## [HIGH] F-006: No mobile viewport meta tag
@@ -46,12 +48,16 @@ Audited at 2026-09-02T05:17:44Z
 
 **Evidence:** No <meta name="viewport"> found on http://127.0.0.1:8931/.; No <meta name="viewport"> found on http://127.0.0.1:8931/product/.
 
+**Affected Routes (2):** `http://127.0.0.1:8931/`, `http://127.0.0.1:8931/product/`
+
 **Fix (medium priority):** Add <meta name="viewport" content="width=device-width, initial-scale=1">.
 
 ## [HIGH] F-007: No contact/about link found
 *Category: engagement · Confidence: medium*
 
 **Evidence:** No link containing 'contact' or 'about' found on http://127.0.0.1:8931/.; No link containing 'contact' or 'about' found on http://127.0.0.1:8931/product/.
+
+**Affected Routes (2):** `http://127.0.0.1:8931/`, `http://127.0.0.1:8931/product/`
 
 **Fix (medium priority):** Add a visible link to a contact or about page from primary navigation.
 

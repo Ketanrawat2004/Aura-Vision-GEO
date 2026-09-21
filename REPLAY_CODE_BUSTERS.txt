@@ -1,0 +1,11 @@
+TEST_SITE_URLS: https://palletsprojects.com
+LLM_MODEL: Gemini 3.8 Flash (High) (2026-03)
+AGENT_HARNESS: Antigravity v1.15.8
+ENV_SETUP: python --version # Zero pip dependencies — pure Python 3.8+ standard library
+
+TEST_STEPS:
+ 1. python run_audit.py --site https://palletsprojects.com --max-pages 5 --out audit_report
+ 2. "Use the Aura-Vision-GEO marketplace to audit https://palletsprojects.com. Do not modify any project files. Use the submitted Round 3 marketplace entrypoint and produce the real audit report."
+ 3. Report is written to audit_report.json in the project root directory (accompanied by audit_report.md and audit_report.html)
+
+EXPECTED_OUTPUT: audit_report.json

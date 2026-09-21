@@ -1,67 +1,45 @@
 ---
 name: engagement-audit
-description: Checks why a visitor who successfully arrives at a page might not stay — missing above-the-fold orientation (what is this / who is it for), unclear navigation, broken internal links leading to dead ends, unlabeled or generic calls-to-action, no mobile viewport, walls of unscannable text, and missing basic trust signals (contact info, about page). Use for the on-site-engagement half of the audit, independent of the three discoverability worker skills.
+description: Audits on-site visitor retention across 8 core UX dimensions — orientation (What is this / Who is it for), value proposition clarity, actionable CTAs, navigation findability, context retention and breadcrumbs on deep routes, scannability and heading hierarchy, and dead-end detection.
 license: MIT
 allowed-tools: [bash, http_fetch]
 ---
 
-# On-Site Engagement Audit
+# On-Site Engagement & Retention Audit
 
 ## When to use
-Called by `audit-orchestrator`. This is the only worker skill that doesn't
-map to the discoverability appendix (A–D) — it covers "on-site engagement:
-keeping the visitor once they arrive," the other half of the brief. Several
-of its checks (clear orientation, scannable structure) are worth noting as
-overlapping with what helps a machine extractor too — a page that's
-confusing to a human skimmer is often also poorly structured for a machine —
-but don't conflate the two categories in the report; keep engagement
-findings under `category: "engagement"`.
+Called by `audit-orchestrator`. Evaluates "why visitors who do arrive don't stay" — the on-site engagement half of the Adobe Hackathon Round 3 challenge.
 
 ## Inputs
-Shared page set from the orchestrator.
+- Shared page set from the orchestrator (URL, status, headers, HTML, visible text, links).
 
-## Procedure
+## Procedure (deterministic across 8 dimensions)
 
-1. **Above-the-fold orientation.** For the homepage (and any landing page),
-   check whether the first ~150 words of visible text answer "what is this
-   / who is it for" — look for a clear one-line description near the top
-   (commonly an `<h1>` + adjacent paragraph). If the first substantial text
-   block is generic (a hero image caption with no description, a slogan with
-   no explanation of what the company does) flag `degrading`/`single-page`.
+1. **What is this? (Orientation)**:
+   - Verify presence of a prominent, descriptive `<h1>` on the homepage and landing routes.
+   - Detect abstract slogans (e.g. "The Future is Now") that fail to explain the product category or service.
 
-2. **Navigation structure** (`scripts/check_engagement.py`): confirm a
-   `<nav>` element or an unordered list of internal links near the top of
-   the page exists, and that internal links use descriptive text (not just
-   "here"/"this"/"click"). No nav on a multi-page site is `degrading`/`sitewide`.
+2. **Who is it for? (Audience Clarity)**:
+   - Inspect opening content for target persona cues ("for developers", "built for teams", "for enterprise").
 
-3. **Dead ends.** Sample a handful of internal links found on the audited
-   pages (respecting `max_pages`/robots.txt, same constraint as
-   `crawl-and-render-audit`) and check their response status. A cluster of
-   4xx/5xx internal links is `degrading`/`section` (or `sitewide` if spread
-   across every sampled page).
+3. **Value Proposition**:
+   - Detect whether the primary benefit statement is accessible within the first 300 words without excessive scrolling.
 
-4. **CTA clarity.** Collect button/link text that looks like a
-   call-to-action (`<button>`, `<a class*="btn">`, or link text near a form).
-   Generic, context-free text ("Click here", "Submit", "Learn more" with
-   nothing nearby to learn more *about*) is `cosmetic`; if it's the *only*
-   CTA on a conversion-relevant page (pricing, signup) it's `degrading`/`single-page`.
+4. **Next Action (CTA Quality)**:
+   - Identify actionable calls-to-action ("Start Free Trial", "Book Demo", "Explore Docs").
+   - Flag complete absence of next steps or reliance on vague link text ("click here", "read more").
 
-5. **Mobile viewport.** Missing `<meta name="viewport">` is `degrading`/`sitewide`
-   if absent on every sampled page — a strong, cheap, binary signal.
+5. **Navigation Findability**:
+   - Verify presence of accessible navigation links to the 4 essential pillars: Products/Services, Pricing, Contact/Support, and About/Company.
 
-6. **Scannability.** Average words-per-`<p>` across the page; a page whose
-   paragraphs average well above ~120 words with no subheadings breaking
-   them up is `cosmetic`/`section` (readable is subjective past a point —
-   keep this as a soft signal, not a hard rule, and don't flag short-form
-   content like a single product blurb).
+6. **Context Retention & Breadcrumbs**:
+   - On deep subpages (2+ path segments), check whether brand identity, parent section context, and breadcrumbs are preserved for visitors arriving from direct AI search links.
 
-7. **Basic trust signals.** No visible way to find contact info or an
-   about/company page from primary navigation is `degrading`/`sitewide` —
-   this affects both a human's willingness to trust the site and (per
-   `trust-and-corroboration-audit`) the entity-disambiguation signals
-   available to a machine.
+7. **Scannability & Information Hierarchy**:
+   - Detect dense walls of text (>140 words per paragraph) and pages lacking `<h2>` subheadings to structure long prose.
+
+8. **Dead Ends**:
+   - Flag public subpages lacking forward action links or global navigation.
 
 ## Output
-`{"findings": [...], "opportunities": [...]}`, `category: "engagement"` on
-every finding. Typical opportunities: adding a search box, breadcrumbs on
-deep pages, a persistent primary CTA.
+`{"findings": [...], "opportunities": [...]}` under `category: "engagement"`.
