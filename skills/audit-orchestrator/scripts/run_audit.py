@@ -218,7 +218,7 @@ def main():
             py_exec, os.path.join(BASE_DIR, "skills", "crawl-and-render-audit", "scripts", "check_crawlability.py"),
             "--site", site_url, "--pages-json", pages_json_path, "--out", out_crawl
         ]
-        subprocess.run(cmd_crawl, check=True)
+        subprocess.run(cmd_crawl, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
         # 2. Render Gap
         print("  • Running crawl-and-render-audit (render gap & machine readability)...")
@@ -226,7 +226,7 @@ def main():
             py_exec, os.path.join(BASE_DIR, "skills", "crawl-and-render-audit", "scripts", "check_render_gap.py"),
             "--pages-json", pages_json_path, "--out", out_render
         ]
-        subprocess.run(cmd_render, check=True)
+        subprocess.run(cmd_render, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
         # 3. Structured Data
         print("  • Running structured-fact-audit (Schema.org, conflicts, non-text facts)...")
@@ -234,7 +234,7 @@ def main():
             py_exec, os.path.join(BASE_DIR, "skills", "structured-fact-audit", "scripts", "check_structured_data.py"),
             "--pages-json", pages_json_path, "--out", out_struct
         ]
-        subprocess.run(cmd_struct, check=True)
+        subprocess.run(cmd_struct, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
         # 4. Corroboration & Entity Collision
         print("  • Running trust-and-corroboration-audit (entity disambiguation & grounding)...")
@@ -242,7 +242,7 @@ def main():
             py_exec, os.path.join(BASE_DIR, "skills", "trust-and-corroboration-audit", "scripts", "check_corroboration.py"),
             "--site", site_url, "--pages-json", pages_json_path, "--out", out_corrob
         ]
-        subprocess.run(cmd_corrob, check=True)
+        subprocess.run(cmd_corrob, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
         # 5. Freshness
         print("  • Running trust-and-corroboration-audit (cross-page date consistency)...")
@@ -250,7 +250,7 @@ def main():
             py_exec, os.path.join(BASE_DIR, "skills", "trust-and-corroboration-audit", "scripts", "check_freshness.py"),
             "--pages-json", pages_json_path, "--out", out_fresh
         ]
-        subprocess.run(cmd_fresh, check=True)
+        subprocess.run(cmd_fresh, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
         # 6. Engagement
         print("  • Running engagement-audit (orientation, CTA, navigation, scannability)...")
@@ -258,7 +258,7 @@ def main():
             py_exec, os.path.join(BASE_DIR, "skills", "engagement-audit", "scripts", "check_engagement.py"),
             "--pages-json", pages_json_path, "--out", out_engage
         ]
-        subprocess.run(cmd_engage, check=True)
+        subprocess.run(cmd_engage, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
         # 7. Empirical Search Grounding (Optional)
         emp_label = "live external search validation" if args.empirical else "offline / unconfigured status"
@@ -271,7 +271,7 @@ def main():
             cmd_empirical.append("--empirical")
         if args.api_key:
             cmd_empirical.extend(["--api-key", args.api_key])
-        subprocess.run(cmd_empirical, check=True)
+        subprocess.run(cmd_empirical, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
         # Step 3: Synthesis & Deduplication
         print("\n[Phase 3/3] Synthesizing audit report with deduplication...", flush=True)
@@ -285,7 +285,7 @@ def main():
             "--pages-count", str(len(valid_pages)),
             "--coverage-json", coverage_json_path
         ]
-        subprocess.run(cmd_agg, check=True)
+        subprocess.run(cmd_agg, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
     elapsed = time.time() - start_time
     print(f"\nAudit complete in {elapsed:.2f}s! Generated deliverables:")
